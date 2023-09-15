@@ -23,16 +23,22 @@ public class TestController {
 
     // 아무것도 없이 Get 해보기
     @GetMapping("/test")
-    public ResponseEntity<String> getTest() {
-        return ResponseEntity.ok().body("정상적으로 접근했습니다.");
+    public ResponseEntity<Map<String, String>> getTest() {
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "정상적으로 접근했습니다.");
+
+        return ResponseEntity.ok().body(response);
     }
 
     // 메시지 Post 해보기
     @PostMapping("/test")
-    public ResponseEntity<String> postTest(@RequestBody TestDTO.TestRequest dto){
+    public ResponseEntity<Map<String, String>> postTest(@RequestBody TestDTO.TestRequest dto){
         String message = dto.getMessage();
 
-        return ResponseEntity.ok().body(message);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", message);
+
+        return ResponseEntity.ok().body(response);
     }
 
     // 쿼리를 이용해 Get 해보기
