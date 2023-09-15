@@ -24,4 +24,15 @@ public class TestDTO {
         private String name;
         private String message;
     }
+
+    @Getter
+    public static class TestJwtRequest {
+        private String name;
+    }
+
+    @Getter
+    @Builder
+    public static class TestJwtResponse {
+        private String token;
+    }
 }

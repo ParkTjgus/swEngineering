@@ -31,10 +31,17 @@ public class TestController {
         return ResponseEntity.ok().body(message);
     }
 
+    // 쿼리를 이용해 Get 해보기
     @GetMapping("/test/query")
     public ResponseEntity<TestDTO.TestQueryResponse> getTestQuery(@ModelAttribute TestDTO.TestQueryRequest dto) {
         TestDTO.TestQueryResponse testQuery = testService.getTestQuery(dto);
 
         return ResponseEntity.ok().body(testQuery);
+    }
+
+    // Jwt 받아오기
+    @PostMapping("/test/jwt")
+    public ResponseEntity<TestDTO.TestJwtResponse> returnJwt(@RequestBody TestDTO.TestJwtRequest dto) {
+        return ResponseEntity.ok().body(testService.getJwt(dto));
     }
 }
