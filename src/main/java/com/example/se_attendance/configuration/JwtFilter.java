@@ -1,6 +1,6 @@
 package com.example.se_attendance.configuration;
 
-import com.example.se_attendance.util.JwtUtil;
+import com.example.se_attendance.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;

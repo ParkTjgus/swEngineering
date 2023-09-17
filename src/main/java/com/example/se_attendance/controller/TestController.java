@@ -3,7 +3,7 @@ package com.example.se_attendance.controller;
 
 import com.example.se_attendance.domain.dto.TestDTO;
 import com.example.se_attendance.service.TestService;
-import com.example.se_attendance.util.JwtUtil;
+import com.example.se_attendance.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

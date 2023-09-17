@@ -1,4 +1,4 @@
-package com.example.se_attendance.util;
+package com.example.se_attendance.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
