@@ -1,6 +1,5 @@
 package com.example.se_attendance.utils;
 
-import com.example.se_attendance.exeption.AppException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

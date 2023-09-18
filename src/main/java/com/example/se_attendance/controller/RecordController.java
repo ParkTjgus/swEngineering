@@ -1,7 +1,6 @@
 package com.example.se_attendance.controller;
 
 import com.example.se_attendance.domain.dto.RecordDTO;
-import com.example.se_attendance.domain.entity.RecordEntity;
 import com.example.se_attendance.service.RecordService;
 import com.example.se_attendance.utils.ResponseUtil;
 import lombok.RequiredArgsConstructor;
