@@ -58,7 +58,7 @@ public class TestController {
     // Jwt 사용해보기
     @GetMapping("/")
     public ResponseEntity<Map<String, String>> useJwt() {
-        String name = JwtUtil.getNameFromToken(); // 토큰에서 이름 가져오기
+        String name = JwtUtil.getUserIdFromToken(); // 토큰에서 이름 가져오기
 
         Map<String, String> response = new HashMap<>();
         response.put("message", name + "님 수고하셨습니다.");
