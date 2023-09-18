@@ -47,10 +47,10 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         // MemberEmail Token에서 꺼내기
-        String name = JwtUtil.getName(token, secretKey);
+        String userId = JwtUtil.getUserId(token, secretKey);
 
         // 권한 부여
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(name, null, List.of(new SimpleGrantedAuthority("name")));
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userId, null, List.of(new SimpleGrantedAuthority("userId")));
 
         //Detail 넣기
         authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
