@@ -31,4 +31,12 @@ public class RecordController {
 
         return ResponseEntity.ok().body(recordService.getRecord());
     }
+
+    // 기록 중단
+    @PostMapping("/record/stop")
+    public ResponseEntity<Void> stopRecord(@RequestBody RecordDTO.stopRequest dto) {
+        recordService.stopRecord(dto);
+
+        return ResponseEntity.ok().build();
+    }
 }

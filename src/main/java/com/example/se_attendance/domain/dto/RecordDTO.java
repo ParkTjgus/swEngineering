@@ -18,4 +18,11 @@ public class RecordDTO {
     public static class TodayRecordResponse {
         private int recordTime;
     }
+
+    @Getter
+    public static class stopRequest {
+        private int recordTime;
+        private double userLatitude;
+        private double userLongitude;
+    }
 }
