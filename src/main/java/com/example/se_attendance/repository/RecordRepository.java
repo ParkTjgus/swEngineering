@@ -12,5 +12,6 @@ public interface RecordRepository extends JpaRepository<RecordEntity, Long> {
     @Query("SELECT e.recordTime FROM RecordEntity e WHERE e.userId = :userId AND e.createdTime >= :startOfDay AND e.createdTime < :endOfDay")
     Optional<Integer> findRecordByUserIdToday(String userId, LocalDateTime startOfDay, LocalDateTime endOfDay);
 
-    Optional<RecordEntity> findByUserId(String userId);
+    @Query("SELECT e FROM RecordEntity e WHERE e.userId = :userId AND e.createdTime >= :startOfDay AND e.createdTime < :endOfDay")
+    Optional<RecordEntity> findByUserIdToday(String userId, LocalDateTime startOfDay, LocalDateTime endOfDay);
 }

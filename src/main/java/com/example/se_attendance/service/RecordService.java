@@ -32,6 +32,10 @@ public class RecordService {
         if(latitude > 10 && longitude > 10) {
             throw new AppException(ErrorCode.INVALID_INPUT, "동아리방에서 출석해 주세요");
         }
+        RecordEntity recordEntity = RecordEntity.builder()
+                .userId(JwtUtil.getUserIdFromToken())
+                .build();
+        recordRepository.save(recordEntity);
     }
 
     // 당일 기록 가져오기
@@ -54,6 +58,7 @@ public class RecordService {
                 .build();
     }
 
+    // 기록 중단하기
     public void stopRecord(RecordDTO.stopRequest dto) {
 
         // 위치 가져오기
@@ -68,8 +73,13 @@ public class RecordService {
         // userId 가져오기
         String userId = JwtUtil.getUserIdFromToken();
 
+        // 오늘 날짜 계산
+        LocalDate today = LocalDate.now();
+        LocalDateTime startOfDay = today.atStartOfDay(); // 오늘 날짜의 00:00:00
+        LocalDateTime endOfDay = today.plusDays(1).atStartOfDay(); // 내일 날짜의 00:00:00
+
         // 같은 userId를 가진 RecordEntity 찾기
-        RecordEntity existingRecord = recordRepository.findByUserId(userId).orElse(null); // findByUserId는 RecordRepository에 구현해야 할 메소드입니다.
+        RecordEntity existingRecord = recordRepository.findByUserIdToday(userId, startOfDay, endOfDay).orElse(null); // findByUserId는 RecordRepository에 구현해야 할 메소드입니다.
 
         if (existingRecord != null) {
             // 이미 존재하는 레코드 업데이트
