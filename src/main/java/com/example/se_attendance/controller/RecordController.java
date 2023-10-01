@@ -39,4 +39,12 @@ public class RecordController {
 
         return ResponseEntity.ok().build();
     }
+
+    // 위치 보내기
+    @PostMapping("/record/location")
+    public ResponseEntity<Void> sendLocation(@RequestBody RecordDTO.sendLocation dto) {
+        recordService.sendLocation(dto);
+
+        return ResponseEntity.ok().build();
+    }
 }

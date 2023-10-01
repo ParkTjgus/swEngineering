@@ -25,4 +25,11 @@ public class RecordDTO {
         private double userLatitude;
         private double userLongitude;
     }
+
+    @Getter
+    public static class sendLocation {
+        private int recordTime;
+        private double userLatitude;
+        private double userLongitude;
+    }
 }
