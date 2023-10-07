@@ -3,6 +3,8 @@ package com.example.se_attendance.domain.dto;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDate;
+
 public class RecordDTO {
 
     // 기록 하기
@@ -31,5 +33,12 @@ public class RecordDTO {
         private int recordTime;
         private double userLatitude;
         private double userLongitude;
+    }
+
+    @Getter
+    @Builder
+    public static class MyRecord {
+        private int recordTime;
+        private LocalDate recordDate;
     }
 }

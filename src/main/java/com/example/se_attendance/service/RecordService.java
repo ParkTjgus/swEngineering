@@ -6,13 +6,13 @@ import com.example.se_attendance.exeption.AppException;
 import com.example.se_attendance.exeption.ErrorCode;
 import com.example.se_attendance.repository.RecordRepository;
 import com.example.se_attendance.utils.JwtUtil;
-import io.jsonwebtoken.Jwt;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -121,5 +121,26 @@ public class RecordService {
             throw  new AppException(ErrorCode.INVALID_INPUT, "해당 사용자는 없습니다.");
         }
 
+    }
+
+    // 출석한 날짜 받아오기
+    public List<RecordDTO.MyRecord> getMyRecord(String month) {
+        String userId = JwtUtil.getUserIdFromToken();
+
+        // userId의 해당 월의 정보 받아오기
+        List<RecordEntity> recordEntities= recordRepository.findByUserIdMonth(userId, month);
+
+        // 반환 리스트 선언
+        List<RecordDTO.MyRecord> myRecords = new ArrayList<>();
+
+        // recordEntities 리스트를 반복하여 myRecords 리스트 생성
+        for (RecordEntity recordEntity : recordEntities) {
+            RecordDTO.MyRecord myRecord = RecordDTO.MyRecord.builder()
+                    .recordTime(recordEntity.getRecordTime())
+                    .recordDate(recordEntity.getCreatedTime().toLocalDate())  // LocalDateTime을 LocalDate로 변환
+                    .build();
+            myRecords.add(myRecord);
+        }
+        return myRecords;
     }
 }
