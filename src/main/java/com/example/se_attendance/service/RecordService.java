@@ -2,15 +2,20 @@ package com.example.se_attendance.service;
 
 import com.example.se_attendance.domain.dto.RecordDTO;
 import com.example.se_attendance.domain.entity.RecordEntity;
+import com.example.se_attendance.domain.entity.StudyGoalEntity;
 import com.example.se_attendance.exeption.AppException;
 import com.example.se_attendance.exeption.ErrorCode;
 import com.example.se_attendance.repository.RecordRepository;
+import com.example.se_attendance.repository.StudyGoalRepository;
 import com.example.se_attendance.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +24,7 @@ import java.util.List;
 public class RecordService {
 
     private final RecordRepository recordRepository;
+    private final StudyGoalRepository studyGoalRepository;
 
     // 기록하기
     public void record(RecordDTO.RecordRequest dto) {
@@ -142,5 +148,28 @@ public class RecordService {
             myRecords.add(myRecord);
         }
         return myRecords;
+    }
+
+    public RecordDTO.GetStudyGoal getStudyGoal(String month) {
+        // 단일 자릿수 월을 두 자릿수로 만듭니다.
+        String formattedMonth = String.format("%02d", Integer.parseInt(month));
+
+        String currentYear = String.valueOf(LocalDate.now().getYear());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate targetDate = LocalDate.parse(currentYear + "-" + formattedMonth + "-01", formatter).plusMonths(1);
+        LocalDateTime targetDateTime = targetDate.atStartOfDay();
+
+        Pageable pageable = PageRequest.of(0, 1);  // 첫 번째 페이지, 한 개의 요소
+        List<StudyGoalEntity> studyGoals = studyGoalRepository.findLatestGoalsBeforeDate(targetDateTime, pageable);
+
+        if (studyGoals.isEmpty()) {
+            return null; // 또는 적절한 예외 처리
+        }
+
+        StudyGoalEntity latestGoal = studyGoals.get(0);
+
+        return RecordDTO.GetStudyGoal.builder()
+                .studyGoal(latestGoal.getStudyGoal())
+                .build();
     }
 }

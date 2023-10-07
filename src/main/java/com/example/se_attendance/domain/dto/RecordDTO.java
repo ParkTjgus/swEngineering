@@ -41,4 +41,10 @@ public class RecordDTO {
         private int recordTime;
         private LocalDate recordDate;
     }
+
+    @Getter
+    @Builder
+    public static class GetStudyGoal {
+        private int studyGoal;
+    }
 }

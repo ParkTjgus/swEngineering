@@ -28,4 +28,9 @@ public class CalendarController {
     public ResponseEntity<List<RecordDTO.MyRecord>> getMyRecord(@RequestParam String month) {
         return ResponseEntity.ok().body(recordService.getMyRecord(month));
     }
+
+    @GetMapping("/studygoal")
+    public ResponseEntity<RecordDTO.GetStudyGoal> getStudyGoal(@RequestParam String month) {
+        return ResponseEntity.ok().body(recordService.getStudyGoal(month));
+    }
 }
