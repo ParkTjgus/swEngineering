@@ -8,5 +8,5 @@ import java.util.List;
 public interface NoticeRepository extends JpaRepository<NoticeEntity,Long> {
 
     // 최신 생성시간 순으로 공지사항을 정렬하여 가져온다.
-    List<NoticeEntity> findAllByOrderByCreatedTimeDesc();
+    List<NoticeEntity> findAllByOrderByCreateTimeDesc();
 }

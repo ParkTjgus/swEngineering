@@ -10,12 +10,12 @@ import java.util.Optional;
 
 public interface RecordRepository extends JpaRepository<RecordEntity, Long> {
 
-    @Query("SELECT e.recordTime FROM RecordEntity e WHERE e.userId = :userId AND e.createdTime >= :startOfDay AND e.createdTime < :endOfDay")
+    @Query("SELECT e.recordTime FROM RecordEntity e WHERE e.memberEntity.memberId = :userId AND e.createTime >= :startOfDay AND e.createTime < :endOfDay")
     Optional<Integer> findRecordByUserIdToday(String userId, LocalDateTime startOfDay, LocalDateTime endOfDay);
 
-    @Query("SELECT e FROM RecordEntity e WHERE e.userId = :userId AND e.createdTime >= :startOfDay AND e.createdTime < :endOfDay")
+    @Query("SELECT e FROM RecordEntity e WHERE e.memberEntity.memberId = :userId AND e.createTime >= :startOfDay AND e.createTime < :endOfDay")
     Optional<RecordEntity> findByUserIdToday(String userId, LocalDateTime startOfDay, LocalDateTime endOfDay);
 
-    @Query("SELECT e FROM RecordEntity e WHERE e.userId = :userId AND MONTH(e.createdTime) = CAST(:month AS integer)")
+    @Query("SELECT e FROM RecordEntity e WHERE e.memberEntity.memberId = :userId AND MONTH(e.createTime) = CAST(:month AS integer)")
     List<RecordEntity> findByUserIdMonth(String userId, String month);
 }

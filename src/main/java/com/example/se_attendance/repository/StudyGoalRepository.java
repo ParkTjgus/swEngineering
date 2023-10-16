@@ -9,6 +9,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface StudyGoalRepository extends JpaRepository<StudyGoalEntity, Long> {
-    @Query("SELECT e FROM StudyGoalEntity e WHERE e.createdTime <= :targetDate ORDER BY e.createdTime DESC")
+    @Query("SELECT e FROM StudyGoalEntity e WHERE e.createTime <= :targetDate ORDER BY e.createTime DESC")
     List<StudyGoalEntity> findLatestGoalsBeforeDate(LocalDateTime targetDate, Pageable pageable);
 }

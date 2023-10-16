@@ -21,7 +21,7 @@ public class NoticeService {
     public NoticeDTO.GetNotice getNotice() {
 
         // 최신 공지사항 리스트를 가져옴
-        List<NoticeEntity> notices = noticeRepository.findAllByOrderByCreatedTimeDesc();
+        List<NoticeEntity> notices = noticeRepository.findAllByOrderByCreateTimeDesc();
 
         // 공지 사항이 없는 경우
         if(notices.isEmpty()) {
@@ -32,9 +32,9 @@ public class NoticeService {
         NoticeEntity noticeEntity = notices.get(0);
 
         return  NoticeDTO.GetNotice.builder()
-                .noticeTitle(noticeEntity.getNoticeTitle())
+//                .noticeTitle(noticeEntity.getNoticeTitle())
                 .noticeContent(noticeEntity.getNoticeContent())
-                .createTime(noticeEntity.getCreatedTime())
+                .createTime(noticeEntity.getCreateTime())
                 .updateTime(noticeEntity.getUpdatedTime())
                 .build();
     }

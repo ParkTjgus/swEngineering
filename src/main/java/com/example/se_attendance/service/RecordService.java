@@ -38,10 +38,10 @@ public class RecordService {
         if(latitude > 10 && longitude > 10) {
             throw new AppException(ErrorCode.INVALID_INPUT, "동아리방에서 출석해 주세요");
         }
-        RecordEntity recordEntity = RecordEntity.builder()
-                .userId(JwtUtil.getUserIdFromToken())
-                .build();
-        recordRepository.save(recordEntity);
+//        RecordEntity recordEntity = RecordEntity.builder()
+//                .memberEntity(JwtUtil.getUserIdFromToken())
+//                .build();
+//        recordRepository.save(recordEntity);
     }
 
     // 당일 기록 가져오기
@@ -143,7 +143,7 @@ public class RecordService {
         for (RecordEntity recordEntity : recordEntities) {
             RecordDTO.MyRecord myRecord = RecordDTO.MyRecord.builder()
                     .recordTime(recordEntity.getRecordTime())
-                    .recordDate(recordEntity.getCreatedTime().toLocalDate())  // LocalDateTime을 LocalDate로 변환
+                    .recordDate(recordEntity.getCreateTime().toLocalDate())  // LocalDateTime을 LocalDate로 변환
                     .build();
             myRecords.add(myRecord);
         }

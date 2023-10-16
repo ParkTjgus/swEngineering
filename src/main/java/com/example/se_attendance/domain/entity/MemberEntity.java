@@ -2,11 +2,12 @@ package com.example.se_attendance.domain.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -15,24 +16,21 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "record_table")
-public class RecordEntity {
-
+@Table(name = "member_table")
+public class MemberEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private int recordTime;
-
+    private String memberId;
+    private String memberName;
+    private String memberPw;
+    private String memberMajor;
+    private String memberState;
+    private String memberBirth;
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createTime;
 
-    @UpdateTimestamp
-    @Column(insertable = false)
-    private LocalDateTime updatedTime;
+    @Builder.Default
+    @OneToMany(mappedBy = "memberEntity")
+    private List<RecordEntity> recordEntityList = new ArrayList<>();
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memberId")
-    private MemberEntity memberEntity;
 }
