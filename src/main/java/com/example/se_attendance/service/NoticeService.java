@@ -35,7 +35,7 @@ public class NoticeService {
 //                .noticeTitle(noticeEntity.getNoticeTitle())
                 .noticeContent(noticeEntity.getNoticeContent())
                 .createTime(noticeEntity.getCreateTime())
-                .updateTime(noticeEntity.getUpdatedTime())
+                .updateTime(noticeEntity.getUpdateTime())
                 .build();
     }
 }

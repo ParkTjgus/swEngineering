@@ -29,5 +29,5 @@ public class NoticeEntity {
 
     @UpdateTimestamp
     @Column(insertable = false)
-    private LocalDateTime updatedTime;
+    private LocalDateTime updateTime;
 }

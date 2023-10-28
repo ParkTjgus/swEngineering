@@ -29,7 +29,7 @@ public class RecordEntity {
 
     @UpdateTimestamp
     @Column(insertable = false)
-    private LocalDateTime updatedTime;
+    private LocalDateTime updateTime;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
