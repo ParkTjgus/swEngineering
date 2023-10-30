@@ -1,16 +1,16 @@
-package com.example.se.controller;
+package com.example.se_attendance.controller;
 
 import com.example.se_attendance.domain.dto.MemberDTO;
 import com.example.se_attendance.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
-@RequestMapping("/user")
+@RequestMapping("/member")
 @RestController
 public class MemberController {
 
@@ -41,5 +41,37 @@ public class MemberController {
     public ResponseEntity<String> updateMyInfo(@RequestBody MemberDTO.Memberdto user){ //얘도 AuthenticationPrincipal 어노테이션 쓰면 되는걸까? 일단 entity를 매개변수로 넘겨주긴 해야함
         memberService.updateMyInfo(user);
         return new ResponseEntity<>("회원 정보 수정 완", HttpStatus.OK);
+    }
+
+    //DB에 저장된 회원 정보 전부 가져오기
+    @GetMapping("/info")
+    public ResponseEntity<List<MemberDTO.MemberName>> getAllMember(){
+        return ResponseEntity.ok().body(memberService.getAllMember());
+    }
+
+    //특정 회원 정보 상세 조회
+    @GetMapping("/{memberId}/detail")
+    public MemberDTO.Memberdto getMemberDetail(@PathVariable String memberId){
+        MemberDTO.Memberdto memberDto = memberService.findById(memberId);
+        if (memberDto==null){
+            assert true;
+        }
+        return memberDto;
+    }
+
+    @PutMapping("/{memberId}/edit")
+    public String updateMemberInfo(@PathVariable String memberId, @ModelAttribute MemberDTO.Memberdto memberDto){
+        memberService.update(memberDto);
+        String result = "회원 정보 수정에 성공 했습니다.";
+        //String reulst = "저장된 회원 정보가 없습니다.";
+        return "message : "+result;
+    }
+
+    //특정 회원 정보 삭제
+    @DeleteMapping("/{memberId}/delete")
+    public Object deleteMember(@PathVariable String memberId){
+        memberService.deleteById(memberId);
+
+        return "memberId : "+memberId;
     }
 }

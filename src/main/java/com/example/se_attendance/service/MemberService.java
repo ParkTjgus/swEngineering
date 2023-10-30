@@ -11,7 +11,10 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -70,5 +73,51 @@ public class MemberService {
         //persistance.setMemberPw(passwordEncoder.encode(user.getMemberPw()));
         //persistance.setMemberName(user.getMemberName());
         //더티체킹. 영속화된 persistance 객체의 변화가 감지되면 더티체킹이 되어 update문을 날려줌(db에)
+    }
+
+    public List<MemberDTO.MemberName> getAllMember(){
+        List<MemberEntity> memberEntityList = memberRepository.findAll();
+
+        //Controller에는 dto로 변환해서 줘야함으로 entity->dto 변환하는 부분
+        List<MemberDTO.MemberName> memberNameList = new ArrayList<>();
+        for (MemberEntity memberEntity : memberEntityList){
+            MemberDTO.MemberName memberdto = MemberDTO.MemberName.builder()
+                    .memberId(memberEntity.getMemberId())
+                    .memberName(memberEntity.getMemberName())
+                    .build();
+            memberNameList.add(memberdto);
+        }
+        return memberNameList;
+    }
+
+    public MemberDTO.Memberdto findById(String memberId){
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberId(memberId);
+        if (optionalMemberEntity.isPresent()) {
+            MemberEntity memberEntity = optionalMemberEntity.get();
+            return MemberDTO.Memberdto.builder()
+                    .memberId(memberEntity.getMemberId())
+                    .memberName(memberEntity.getMemberName())
+                    .memberMajor(memberEntity.getMemberMajor())
+                    .memberState(memberEntity.getMemberState())
+                    .memberBirth(memberEntity.getMemberBirth())
+                    .createTime(memberEntity.getCreateTime())
+                    .build();
+        } else{
+            return null;
+        }
+    }
+
+    public void deleteById(String memberId) {
+        memberRepository.deleteByMemberId(memberId);
+    }
+
+    public void update(MemberDTO.Memberdto memberDto) {
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setMemberId(memberDto.getMemberId());
+        memberEntity.setMemberBirth(memberDto.getMemberBirth());
+        memberEntity.setMemberMajor(memberDto.getMemberMajor());
+        memberEntity.setMemberName(memberDto.getMemberName());
+        memberEntity.setMemberState(memberDto.getMemberState());
+        memberRepository.save(memberEntity);
     }
 }

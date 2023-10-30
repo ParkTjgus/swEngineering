@@ -43,4 +43,11 @@ public class MemberDTO {
         private LocalDateTime updateTime;
 
     }
+
+    @Builder
+    @Getter
+    public static class MemberName {
+        private String memberId;
+        private String memberName;
+    }
 }
