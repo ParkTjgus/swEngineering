@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,7 @@ import java.util.Optional;
 @Slf4j
 public class MemberService {
     private final MemberRepository memberRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder encoder;
     @Value("${jwt.secret}")
     private String secretKey;
 
@@ -34,7 +35,7 @@ public class MemberService {
 
         MemberEntity user = MemberEntity.builder()
                 .memberId(userDto.getMemberId())
-                .memberPw(passwordEncoder.encode(userDto.getMemberPw()))
+                .memberPw(encoder.encode(userDto.getMemberPw()))
                 .memberName(userDto.getMemberName())
                 .memberMajor(userDto.getMemberMajor())
                 .memberState(userDto.getMemberState())
@@ -49,7 +50,7 @@ public class MemberService {
 
         MemberEntity user = memberRepository.findByMemberId(memberLoginDto.getMemberId())
                 .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 회원 입니다."));
-        if (!passwordEncoder.matches(memberLoginDto.getMemberPw(), user.getMemberPw())) {
+        if (!encoder.matches(memberLoginDto.getMemberPw(), user.getMemberPw())) {
             throw new IllegalArgumentException("잘못된 비밀번호입니다.");
         }
         return JwtUtil.createToken(user.getMemberId(), secretKey, expireTimeMs);

@@ -178,7 +178,7 @@ public class RecordService {
         System.out.println("month : "+month);
         Long targetTime = studyGoalRepository.findByMonth(month);
         System.out.println("targetTime : "+targetTime);
-        System.out.println(recordRepository.findAll(targetTime, month));
-        return recordRepository.findAll(targetTime, month);
+        System.out.println(recordRepository.findAllTime(targetTime, month));
+        return recordRepository.findAllTime(targetTime, month);
     }
 }

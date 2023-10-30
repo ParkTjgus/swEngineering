@@ -19,7 +19,7 @@ public class CalendarController {
     private final NoticeService noticeService;
     private final RecordService recordService;
 
-    @GetMapping("/notice")
+    @GetMapping("/notice/now")
     public ResponseEntity<NoticeDTO.GetNotice> getNotice() {
         return ResponseEntity.ok().body(noticeService.getNotice());
     }

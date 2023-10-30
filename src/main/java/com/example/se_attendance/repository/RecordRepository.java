@@ -20,6 +20,6 @@ public interface RecordRepository extends JpaRepository<RecordEntity, Long> {
     @Query("SELECT e FROM RecordEntity e WHERE e.memberEntity.memberId = :userId AND MONTH(e.createTime) = CAST(:month AS integer)")
     List<RecordEntity> findByUserIdMonth(String userId, String month);
 
-    @Query("SELECT DISTINCT r.user.memberId FROM RecordEntity r WHERE FUNCTION('MONTH', r.updateTime) = :month GROUP BY r.user.memberId HAVING SUM(r.recordTime) >= :targetTime")
-    List<Long> findAll(@Param("targetTime") Long targetTime, @Param("month") int month);
+    @Query("SELECT DISTINCT r.memberEntity.memberId FROM RecordEntity r WHERE FUNCTION('MONTH', r.updateTime) = :month GROUP BY r.memberEntity.memberId HAVING SUM(r.recordTime) >= :targetTime")
+    List<Long> findAllTime(@Param("targetTime") Long targetTime, @Param("month") int month);
 }
