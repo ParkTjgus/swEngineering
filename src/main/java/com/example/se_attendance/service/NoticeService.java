@@ -72,7 +72,8 @@ public class NoticeService {
         NoticeEntity notice = noticeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 공지사항이 존재하지 않습니다."));
         //db에 안날려도 알아서 업데이트 해준대.. 신기(더티체킹)
-        notice.update(noticeDto.getNoticeContent());
+        notice.setNoticeContent(noticeDto.getNoticeContent());
+        noticeRepository.save(notice);
 
         return id;
     }
