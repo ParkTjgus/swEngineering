@@ -30,4 +30,8 @@ public class NoticeEntity {
     @UpdateTimestamp
     @Column(insertable = false)
     private LocalDateTime updateTime;
+
+    public NoticeEntity(String noticeContent) {
+        this.noticeContent = noticeContent;
+    }
 }

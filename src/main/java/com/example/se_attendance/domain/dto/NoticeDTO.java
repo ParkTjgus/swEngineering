@@ -16,4 +16,16 @@ public class NoticeDTO {
         private LocalDateTime createTime;
         private LocalDateTime updateTime;
     }
+
+    @Getter
+    @Builder
+    public static class NoticeDto {
+        private Long id;
+
+        private String noticeTitle;
+
+        private String noticeContent;
+
+        private LocalDateTime updateTime;
+    }
 }

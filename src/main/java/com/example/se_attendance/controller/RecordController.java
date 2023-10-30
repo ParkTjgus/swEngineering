@@ -9,12 +9,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class RecordController {
 
     private final RecordService recordService;
+
+    // 목표 시간 가져오기
+    @GetMapping("/record")
+    public List<Long> showRecord(@RequestParam int month){
+        return recordService.findMembers(month);
+    }
 
     // 기록하기
     @PostMapping("/record")

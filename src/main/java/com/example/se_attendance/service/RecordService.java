@@ -172,4 +172,13 @@ public class RecordService {
                 .studyGoal(latestGoal.getStudyGoal())
                 .build();
     }
+
+    public List<Long> findMembers(int month) { //Long으로 리턴해서 바뀐 게시글 id값을 받아올까? 고민
+        // studyGoal db에서 이 날짜에 해당하는 목표시간을 가지고 와야함.
+        System.out.println("month : "+month);
+        Long targetTime = studyGoalRepository.findByMonth(month);
+        System.out.println("targetTime : "+targetTime);
+        System.out.println(recordRepository.findAll(targetTime, month));
+        return recordRepository.findAll(targetTime, month);
+    }
 }
