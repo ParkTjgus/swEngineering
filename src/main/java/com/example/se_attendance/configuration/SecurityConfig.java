@@ -25,8 +25,7 @@ public class SecurityConfig {
                 .csrf().disable()//cross site 기능
                 .cors().and()// cross site 도메인 다른 경우 허용
                 .authorizeRequests()
-                .antMatchers("/user/login").permitAll()
-                .antMatchers("/user/signup").permitAll()
+                .antMatchers("/member/login","/member/signup").permitAll()
                 .antMatchers("/test/**").permitAll() // test는 언제나 가능
                 .anyRequest().authenticated()
                 .and()
