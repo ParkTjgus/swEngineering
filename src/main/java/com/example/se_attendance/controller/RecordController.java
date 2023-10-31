@@ -19,7 +19,7 @@ public class RecordController {
 
     private final RecordService recordService;
 
-    // 목표 시간 가져오기
+    // 목표 시간 달성한 멤버 출력하기
     @GetMapping("/record")
     public List<Long> showRecord(@RequestParam int month){
         return recordService.findMembers(month);
