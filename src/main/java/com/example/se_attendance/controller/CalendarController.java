@@ -2,6 +2,7 @@ package com.example.se_attendance.controller;
 
 import com.example.se_attendance.domain.dto.NoticeDTO;
 import com.example.se_attendance.domain.dto.RecordDTO;
+import com.example.se_attendance.domain.dto.StudyGoalDTO;
 import com.example.se_attendance.service.NoticeService;
 import com.example.se_attendance.service.RecordService;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,7 @@ public class CalendarController {
     }
 
     @GetMapping("/studygoal")
-    public ResponseEntity<RecordDTO.GetStudyGoal> getStudyGoal(@RequestParam String month) {
+    public ResponseEntity<StudyGoalDTO.GetStudyGoal> getStudyGoal(@RequestParam String month) {
         return ResponseEntity.ok().body(recordService.getStudyGoal(month));
     }
 }

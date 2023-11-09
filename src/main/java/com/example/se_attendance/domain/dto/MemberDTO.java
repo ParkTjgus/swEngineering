@@ -40,8 +40,6 @@ public class MemberDTO {
 
         private LocalDateTime createTime;
 
-        private LocalDateTime updateTime;
-
     }
 
     @Builder

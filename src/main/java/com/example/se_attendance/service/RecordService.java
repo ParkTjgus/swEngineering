@@ -1,6 +1,7 @@
 package com.example.se_attendance.service;
 
 import com.example.se_attendance.domain.dto.RecordDTO;
+import com.example.se_attendance.domain.dto.StudyGoalDTO;
 import com.example.se_attendance.domain.entity.RecordEntity;
 import com.example.se_attendance.domain.entity.StudyGoalEntity;
 import com.example.se_attendance.exeption.AppException;
@@ -150,7 +151,7 @@ public class RecordService {
         return myRecords;
     }
 
-    public RecordDTO.GetStudyGoal getStudyGoal(String month) {
+    public StudyGoalDTO.GetStudyGoal getStudyGoal(String month) {
         // 단일 자릿수 월을 두 자릿수로 만듭니다.
         String formattedMonth = String.format("%02d", Integer.parseInt(month));
 
@@ -168,7 +169,7 @@ public class RecordService {
 
         StudyGoalEntity latestGoal = studyGoals.get(0);
 
-        return RecordDTO.GetStudyGoal.builder()
+        return StudyGoalDTO.GetStudyGoal.builder()
                 .studyGoal(latestGoal.getStudyGoal())
                 .build();
     }

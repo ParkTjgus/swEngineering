@@ -1,6 +1,6 @@
 package com.example.se_attendance.controller;
 
-import com.example.se_attendance.domain.dto.StudyGoalDto;
+import com.example.se_attendance.domain.dto.StudyGoalDTO;
 import com.example.se_attendance.service.StudyGoalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +14,7 @@ public class StudyGoalController {
 
     //목표시간 설정하기
     @PostMapping("/studygoal")
-    public void setStudyGoal(@RequestBody StudyGoalDto studyGoalDto){
+    public void setStudyGoal(@RequestBody StudyGoalDTO.SetStudyGoal studyGoalDto){
         studyGoalService.setStudyGoal(studyGoalDto);
     }
 }
