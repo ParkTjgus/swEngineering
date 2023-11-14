@@ -68,24 +68,6 @@ public class NoticeService {
                 .collect(Collectors.toList());
     }
 
-    // 공지사항 수정 (가장 최근 공지사항만)
-    @Transactional
-    public void updateNotice(NoticeDTO.NoticeDto noticeDto) {
-        List<NoticeEntity> notices = noticeRepository.findAllByOrderByCreateTimeDesc();
-
-        // 공지 사항이 없는 경우
-        if(notices.isEmpty()) {
-            throw new AppException(ErrorCode.NOT_FOUND, "공지 사항이 없습니다.");
-        }
-
-        // 최신 공지사항 추출
-        NoticeEntity notice = notices.get(0);
-
-        //더티체킹
-        notice.setNoticeContent(noticeDto.getNoticeContent());
-        noticeRepository.save(notice);
-    }
-
     // 공지사항 삭제
     public void deleteNotice(Long id) {
         NoticeEntity notice = noticeRepository.findById(id)
