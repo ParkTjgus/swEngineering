@@ -59,4 +59,10 @@ public class MemberDTO {
         private String memberMajor;
         private int recordTime;
     }
+
+    @Builder
+    @Getter
+    public static class LoginResponse {
+        private String token;
+    }
 }

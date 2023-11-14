@@ -26,10 +26,11 @@ public class MemberController {
 
     // 로그인 (app)
     @PostMapping("/login")
-    public ResponseEntity<String> login(
-                                         @RequestBody MemberDTO.MemberLoginDto memberLoginDto) {
-        memberService.login(memberLoginDto);
-        return new ResponseEntity<>(memberService.login(memberLoginDto), HttpStatus.OK);
+    public ResponseEntity<MemberDTO.LoginResponse> login(@RequestBody MemberDTO.MemberLoginDto memberLoginDto) {
+        String token = memberService.login(memberLoginDto);
+        return ResponseEntity.ok().body(MemberDTO.LoginResponse.builder()
+                        .token(token)
+                .build());
     }
 
     // 회원 정보 조회 (app)
