@@ -1,15 +1,13 @@
 package com.example.se_attendance.controller;
 
+import com.example.se_attendance.domain.dto.MemberDTO;
 import com.example.se_attendance.domain.dto.RecordDTO;
 import com.example.se_attendance.service.RecordService;
 import com.example.se_attendance.utils.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -55,5 +53,10 @@ public class RecordController {
         recordService.sendLocation(dto);
 
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/rank/time/{month}")
+    public ResponseEntity<List<MemberDTO.rankMember>> getTop5(@PathVariable String month){
+        return ResponseEntity.ok().body(recordService.findTop5(month));
     }
 }

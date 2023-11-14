@@ -1,5 +1,6 @@
 package com.example.se_attendance.service;
 
+import com.example.se_attendance.domain.dto.MemberDTO;
 import com.example.se_attendance.domain.dto.RecordDTO;
 import com.example.se_attendance.domain.dto.StudyGoalDTO;
 import com.example.se_attendance.domain.entity.RecordEntity;
@@ -181,5 +182,27 @@ public class RecordService {
         System.out.println("targetTime : "+targetTime);
         System.out.println(recordRepository.findAllTime(targetTime, month));
         return recordRepository.findAllTime(targetTime, month);
+    }
+
+    public List<MemberDTO.rankMember> findTop5(String month){
+        String createTime = "%-"+month+"-%" ; //입력받은 month를 createTime format으로 형변환
+        List<RecordEntity> top5RecordEntities = recordRepository.findTop5ByCreateTimeOrderByRecordTimeDesc(createTime);
+        List<MemberDTO.rankMember> top5Members = new ArrayList<>();
+
+        if(top5RecordEntities.isEmpty()) {
+            throw new AppException(ErrorCode.NOT_FOUND, "저장된 회원 정보가 없습니다.");
+        }
+
+        for (RecordEntity recordEntity : top5RecordEntities) {
+            MemberDTO.rankMember top5Member = MemberDTO.rankMember.builder()
+                    .recordTime(recordEntity.getRecordTime())
+                    .memberId(recordEntity.getMemberEntity().getMemberId())
+                    .memberName(recordEntity.getMemberEntity().getMemberName())
+                    .memberMajor(recordEntity.getMemberEntity().getMemberMajor())
+                    .build();
+            top5Members.add(top5Member);
+        }
+
+        return top5Members;
     }
 }

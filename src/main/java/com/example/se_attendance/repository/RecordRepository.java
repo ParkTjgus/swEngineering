@@ -22,4 +22,7 @@ public interface RecordRepository extends JpaRepository<RecordEntity, Long> {
 
     @Query("SELECT DISTINCT r.memberEntity.memberId FROM RecordEntity r WHERE FUNCTION('MONTH', r.updateTime) = :month GROUP BY r.memberEntity.memberId HAVING SUM(r.recordTime) >= :targetTime")
     List<Long> findAllTime(@Param("targetTime") Long targetTime, @Param("month") int month);
+
+    //기록시간순으로 top5 정렬하여 가져온다.
+    List<RecordEntity> findTop5ByCreateTimeOrderByRecordTimeDesc(String createTime);
 }

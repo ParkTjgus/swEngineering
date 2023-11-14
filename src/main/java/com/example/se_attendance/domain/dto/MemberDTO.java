@@ -48,4 +48,13 @@ public class MemberDTO {
         private String memberId;
         private String memberName;
     }
+
+    @Builder
+    @Getter
+    public static class rankMember{
+        private String memberId;
+        private String memberName;
+        private String memberMajor;
+        private int recordTime;
+    }
 }
