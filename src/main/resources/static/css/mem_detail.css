@@ -1,0 +1,51 @@
+@import url("common.css");
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail_content{
+    width: 800px;
+
+}
+.detail_content > *{
+    background-color: var(--DarkWhite);
+    border-style: solid;
+    border-color: var(--Gray);
+    border-width: 2px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+}
+.mem_title{
+    height: 50px;
+}
+.mem_content{
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.nameDiv{
+    display: flex;
+    width: 600px;
+    height: 40px;
+}
+.nameDiv > .title{
+    flex: 1;
+
+}
+.nameDiv > .memberName,
+.nameDiv > .memberId,
+.nameDiv > .memberMajor,
+.nameDiv > .memberBirth,
+.nameDiv > .createTime,
+.nameDiv > .memberState{
+    flex: 2;
+}

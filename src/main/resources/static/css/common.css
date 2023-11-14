@@ -1,0 +1,216 @@
+/* 색상 정의 */
+:root {
+    --Blue: #86A6FF;
+    --Indigo : #35374A;
+    --DarkWhite:#FDFEFE;
+    --White: #FFFFFF;
+    --SecondBlue: #6D91F6;
+    --LightBlue: #E5EDFF;
+    --Chachoal: #525252;
+    --background-color: #eee;
+    --Gray: #B3B3B3;
+    --Black:#000000;
+    --LightGray: #F5F5F5;
+    --PinkRed: #FF6363;
+    --LightPink: #ff8c8c;
+    
+    /* --TextBlue: #325cc7;
+    --Gray: #CFCFCF;
+    --AlmostGray: #6A6B6F;
+    --LightGray: #DEDEDE;
+    --AlmostBlack: #151F36;
+    --background-color: #CFCFCF;
+    --text-color: #FFFFFF; */
+
+    --font-small:14px;
+    --font-normal:20px;
+    --font-medium:28px;
+    --font-big:30px;
+
+    --margin-top:40px;
+    --margin-middle:48px
+}
+
+/* 공통설정 */
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, sans-serif;
+    list-style-type: none; /* 리스트 앞에 붙은 점 제거 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* 상단바 */
+.top-bar{
+    flex: 1;
+    background-color: var(--background-color);
+    padding: 10px;
+    height: 70px;
+    width: 100%;
+    background-color: var(--White);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    border-style: solid;
+    border-color: var(--White);
+    border-bottom-color: var(--SecondBlue);
+    border-width: 1px;
+}
+.top-bar > *{
+    font-size: var(--font-normal);
+    color: var(--Chachoal);
+}
+.top-bar > .bar_text{
+    margin-left: 16px;
+}
+
+.btn_logout{
+    margin-right: 24px;
+}
+
+.bottom-section {
+    flex: 20; /* top-section에 비해 20배 크기로 설정 */
+    display: flex;
+}
+.menu_left, .center-panel, .main_content {
+    font-size: small;
+}
+.menu_left {
+    flex: 1;
+    background-color: var(--Blue);
+}
+
+.menu_right {
+    flex: 2;
+    background-color: var(--Indigo);
+}
+.menu_right > ul > .now_state{
+    background-color: var(--Gray);
+}
+.menu_right > ul > li{
+    /* border-style: solid;
+    border-color: var(--Indigo); 
+    border-bottom-color: var(--Black);
+    border-width: 2px;*/
+}
+.menu_right > ul > li :hover{
+    background-color: var(--Gray);
+}
+
+.menu_right > ul > li > a{
+    display: block;
+    height: 28px;
+    color: var(--DarkWhite);
+    padding: 12px;
+    padding-top: 20px;
+}
+.main_section {
+    flex: 20;
+    background-color: var(--DarkWhite);
+}
+.main_section > .main_content{
+    margin: 80px 80px;
+}
+.main_content > .content{
+    margin-top: 30px;
+    background-color: var(--LightGray);
+    height: 800px;
+    font-size: 20px;
+    display: flex;
+}
+
+.h1_container > h1{
+    font-weight: normal;
+}
+.h1_container{
+    display: flex;
+    justify-content: space-between;
+}
+
+#btn_back{
+    border-style: solid;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px;
+
+    border-radius: 8px;
+    border-color: var(--Gray);
+    background-color: var(--Gray);
+    color: var(--DarkWhite);
+    margin-right: 4px;
+}
+#btn_register{
+    border-style: solid;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px;
+
+    border-radius: 8px;
+    border-color: var(--Blue);
+    background-color: var(--Blue);
+    color: var(--DarkWhite);
+    margin-right: 4px;
+}
+#btn_register > a{
+    color: var(--DarkWhite);
+}
+.btn_select{
+    border-style: solid;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 6px;
+    width: 70px;
+
+    border-radius: 8px;
+    border-color: var(--Blue);
+    background-color: var(--Blue);
+    color: var(--DarkWhite);
+    margin-right: 4px;
+}
+
+#btn_delete{
+    border-style: solid;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 8px;
+    border-color: var(--PinkRed);
+    background-color: var(--PinkRed);
+    color: var(--DarkWhite);
+    margin-top: 60px;
+}
+.btn_detail{
+    background-color: var(--Gray);
+    border-style: solid;
+    border-color: var(--Gray);
+    border-radius: 6px;
+    color: var(--DarkWhite);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.btn_detail:hover,
+#btn_back:hover{
+    background-color: var(--Chachoal);
+    border-color: var(--Chachoal);
+}
+#btn_register:hover{
+    background-color: var(--SecondBlue);
+    border-color: var(--SecondBlue);
+}
+#btn_delete:hover{
+    background-color: var(--LightPink);
+    border-color: var(--LightPink);
+}

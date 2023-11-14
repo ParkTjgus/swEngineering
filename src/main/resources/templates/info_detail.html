@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/info_detail">
+    <title>공지사항 상세조회</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- 상단바 -->
+        <div class="top-bar">
+            <div class="bar_text">관리자모드</div>
+            <a href="#" class="btn_logout">LOGOUT</a>
+        </div>
+
+
+        <div class="bottom-section">
+            <!-- 밑에 구역 3개 -->
+            <div class="menu_left">
+                <!-- 왼쪽 메뉴바 만들기(수정) -->
+            </div>
+
+            <div class="menu_right">
+                <ul>
+                    <li><a href="mem_manage.html">회원관리</a></li>
+                    <li class="now_state"><a href="info_manage.html">공지사항</a></li>
+                    <li><a href="goalTime.html">목표 시간 설정</a></li>
+                </ul>
+            </div>
+
+            <div class="main_section">
+                <div class="main_content">
+
+                    <div class="h1_container">
+                        <h1>공지사항조회 > 상세조회</h1>
+                        <!-- 뒤로가기 기능넣기(수정) -->
+                        <button id="btn_back" onclick="history.back()">뒤로가기</button>
+                    </div>
+
+                    <div class="content">
+
+                        <!-- 목록 -->
+                        <div class="detail_content">
+                            <div class="updateTime">2023.09.20</div>
+                            <div class="noticeContent">공지사항내용</div>   
+                        </div>
+
+                        <button id="btn_delete">공지사항 삭제</button>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="/js/info_detail"></script>
+
+</body>
+</html>

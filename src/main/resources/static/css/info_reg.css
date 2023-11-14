@@ -1,0 +1,48 @@
+@import url("common.css");
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail_content{
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.detail_content > *{
+   
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+}
+
+.noticeContent{
+    width: 900px;
+    height: 400px;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    padding: 16px;
+    text-align: start;
+}
+
+.input-text {
+    width: 900px;
+    height: 400px;
+    word-wrap: break-word; /* 글자가 단어 경계에서 줄 바꿈될 수 있도록 설정 */
+    border-radius: 6px;
+    border-style: solid;
+    border-color: var(--Gray);
+    border-width: 2px;
+    padding: 16px;
+}
+
+#btn_register{
+    margin-top: 40px;
+}

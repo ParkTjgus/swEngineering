@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/goalTime">
+    <title>목표시간 설정</title>
+</head>
+<body>
+    <div class="container">
+
+        <!-- 상단바 -->
+        <div class="top-bar">
+            <div class="bar_text">관리자모드</div>
+            <a href="#" class="btn_logout">LOGOUT</a>
+        </div>
+
+
+        <div class="bottom-section">
+            <!-- 밑에 구역 3개 -->
+            <div class="menu_left">
+                <!-- 왼쪽 메뉴바 만들기(수정) -->
+            </div>
+
+            <div class="menu_right">
+                <ul>
+                    <li><a href="mem_manage.html">회원관리</a></li>
+                    <li><a href="info_manage.html">공지사항</a></li>
+                    <li class="now_state"><a href="#">목표 시간 설정</a></li>
+                </ul>
+            </div>
+
+            <div class="main_section">
+                <div class="main_content">
+
+                    <!-- 목표시간 설정 -->
+                    <div class="h1_container">
+                        <h1>목표시간 설정</h1>
+                    </div>
+
+                    <div class="top_content">
+                        <div class="time_now">현재 목표시간 : 80시간</div>
+                        <div>
+                            <input type="number" class="input_time" min="10" max="500" step="10">
+                            <button type="submit" class="btn_select">설정</button>
+                        </div>
+                    </div>
+
+                    <div class="h1_container">
+                        <h1>목표 달성 회원 관리</h1>
+                        <div class="check">
+                            <input type="checkbox" id="btn_check" value="check">
+                            <label for="btn_check">목표시간 달성 회원만 보기</label>
+                        </div>
+                        
+                    </div>
+
+                    <!-- 회원 목록 -->
+                    <div class="content">
+                        <div class="member_list">
+                            <div class="title">
+                                <div class="memberName">이름</div>    
+                                <div class="memberNum">학번</div>
+                                <div class="attendTime">출석시간</div>  
+                            </div>
+                            
+                            <div class="member">
+                                <div class="memberName">이름</div>    
+                                <div class="memberNum">학번</div>
+                                <div class="attendTime">출석시간</div>
+                                 
+                            </div>
+                            <div class="member">
+                                <div class="memberName">이름</div>    
+                                <div class="memberNum">학번</div>
+                                <div class="attendTime">출석시간</div>
+                            </div>
+
+                            
+                        </div>
+                
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="/js/goalTime"></script>
+
+</body>
+</html>

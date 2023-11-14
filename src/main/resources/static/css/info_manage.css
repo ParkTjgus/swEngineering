@@ -1,0 +1,56 @@
+@import url("common.css");
+
+.main_content > .content{
+    align-items: start;
+    justify-content: center;
+}
+
+/* 회원 목록 */
+.info_list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: var(--font-small);
+    margin: var(--margin-middle) auto;
+}
+
+.info_list > .info,
+.info_list > .title{
+    height: 48px;
+    width: 800px;
+    display: flex;
+    align-items: center;
+    margin: 0px auto 2px;
+}
+.info_list > .title{
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.info > *,
+.title > *{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+}
+
+.info > .noticeContent,
+.info > .noticeTime{
+    background-color: var(--White);
+    border-style: solid;
+    border-color: var(--Gray);
+    border-width: 1px;
+    border-radius: 8px;
+}
+
+.noticeContent{
+    flex:5;
+}
+.noticeTime{
+    flex:3;
+    margin-right: 8px;
+}
+.btn_detail,.non_btn{
+    flex:1;
+}

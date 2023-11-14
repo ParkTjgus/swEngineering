@@ -1,0 +1,64 @@
+@import url("common.css");
+
+.main_content > .content{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+/* 회원 목록 */
+.member_list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: var(--font-small);
+    margin: var(--margin-middle) auto;
+}
+
+.member_list > .member,
+.member_list > .title{
+    height: 48px;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    margin: 0px auto 2px;
+}
+.member_list > .title{
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.member > *,
+.title > *{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+}
+
+.member > *{
+    border-style: solid;
+    border-color: var(--Gray);
+    border-width: 1px;
+    border-radius: 8px;
+}
+.member > .memberName,
+.member > .memberId{
+    background-color: var(--White);
+}
+
+.memberName{
+    flex:2;
+}
+.memberId{
+    flex:4;
+    margin-right: 8px;
+}
+.btn_detail,
+.non_btn,
+.time{
+    flex:1;
+}
+
+.btn_detail > a{
+    color: var(--DarkWhite);
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/mem_detail">
+    <title>회원상세조회</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- 상단바 -->
+        <div class="top-bar">
+            <div class="bar_text">관리자모드</div>
+            <a href="#" class="btn_logout">LOGOUT</a>
+        </div>
+
+
+        <div class="bottom-section">
+            <!-- 밑에 구역 3개 -->
+            <div class="menu_left">
+                <!-- 왼쪽 메뉴바 만들기(수정) -->
+            </div>
+
+            <div class="menu_right">
+                <ul>
+                    <li class="now_state"><a href="mem_manage.html">회원관리</a></li>
+                    <li><a href="info_manage.html">공지사항</a></li>
+                    <li><a href="goalTime.html">목표 시간 설정</a></li>
+                </ul>
+            </div>
+
+            <div class="main_section">
+                <div class="main_content">
+
+                    <div class="h1_container">
+                        <h1>회원관리 > 상세조회</h1>
+                        <!-- 뒤로가기 기능넣기(수정) -->
+                        <button id="btn_back" onclick="history.back()">뒤로가기</button>
+                    </div>
+
+                    <div class="content">
+
+                        <!-- 목록 -->
+                        <div class="detail_content">
+                            <div class="mem_title">회원정보</div>
+
+                            <div class="mem_content">
+                                <div class="nameDiv">
+                                    <div class="title">이름</div>
+                                    <div class="memberName">최성임</div>
+                                </div>
+                                <div class="nameDiv">
+                                    <div class="title">학번</div>
+                                    <div class="memberId">21910867</div>
+                                </div>
+                                <div class="nameDiv">
+                                    <div class="title">학과</div>
+                                    <div class="memberMajor">생명과학과</div>
+                                </div>
+                                <div class="nameDiv">
+                                    <div class="title">생년월일</div>
+                                    <div class="memberBirth">2000.09.26</div>
+                                </div>
+                                <div class="nameDiv">
+                                    <div class="title">가입년도</div>
+                                    <div class="createTime">2022.07.07</div>
+                                </div>
+                                <div class="nameDiv">
+                                    <div class="title">상태</div>
+                                    <div class="memberState">재학</div>
+                                </div>
+                            </div>   
+                        </div>
+
+                        <button id="btn_delete">회원삭제</button>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="/js/mem_detail"></script>
+
+</body>
+</html>
