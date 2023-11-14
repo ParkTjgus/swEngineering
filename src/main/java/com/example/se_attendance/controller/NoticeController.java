@@ -34,14 +34,6 @@ public class NoticeController {
         return ResponseEntity.ok().body(noticeService.findAll());
     }
 
-
-    //가장 최근 공지사항 수정
-    @PatchMapping("")
-    public ResponseEntity<String> updateNotice(@RequestBody NoticeDTO.NoticeDto noticeDto){
-        noticeService.updateNotice(noticeDto);
-        return new ResponseEntity<>("공지사항이 수정되었습니다.", HttpStatus.OK);
-    }
-
     //공지사항 삭제
     @DeleteMapping ("/{id}")
     public ResponseEntity<String> deleteNotice(@PathVariable Long id){
