@@ -41,22 +41,23 @@ public class NoticeService {
                 .build();
     }
 
+       // 공지사항 생성
     public void createNotice(NoticeDTO.NoticeDto noticeDto) {
         NoticeEntity notice = new NoticeEntity(noticeDto.getNoticeContent());
-        // 왜 이렇게 생성하지? builder로 생성하면 안되나? id는 auto로 자동 생성되는데 왜 dto에서 아이디를 가져오는거지? 이해가 안된다..
-        log.info(notice.getId() + notice.getNoticeContent());
         noticeRepository.save(notice);
     }
 
+    // 공지사항 상세 조회
     public NoticeDTO.NoticeDto findNotice(Long id) {
         NoticeEntity notice = noticeRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 공지사항이 존재하지 않습니다."));
+                .orElseThrow(() -> new AppException(ErrorCode.NOT_FOUND, "해당 공지사항이 존재하지 않습니다."));
         return NoticeDTO.NoticeDto.builder()
                 .id(notice.getId())
                 .noticeContent(notice.getNoticeContent())
                 .build();
     }
 
+    // 공지사항 목록 조회
     @Transactional(readOnly = true)
     public List<NoticeDTO.NoticeDto> findAll() {
         return noticeRepository.findAll().stream()
@@ -67,20 +68,28 @@ public class NoticeService {
                 .collect(Collectors.toList());
     }
 
+    // 공지사항 수정 (가장 최근 공지사항만)
     @Transactional
-    public Long updateNotice(Long id, NoticeDTO.NoticeDto noticeDto) { //Long으로 리턴해서 바뀐 게시글 id값을 받아올까? 고민
-        NoticeEntity notice = noticeRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 공지사항이 존재하지 않습니다."));
-        //db에 안날려도 알아서 업데이트 해준대.. 신기(더티체킹)
+    public void updateNotice(NoticeDTO.NoticeDto noticeDto) {
+        List<NoticeEntity> notices = noticeRepository.findAllByOrderByCreateTimeDesc();
+
+        // 공지 사항이 없는 경우
+        if(notices.isEmpty()) {
+            throw new AppException(ErrorCode.NOT_FOUND, "공지 사항이 없습니다.");
+        }
+
+        // 최신 공지사항 추출
+        NoticeEntity notice = notices.get(0);
+
+        //더티체킹
         notice.setNoticeContent(noticeDto.getNoticeContent());
         noticeRepository.save(notice);
-
-        return id;
     }
 
+    // 공지사항 삭제
     public void deleteNotice(Long id) {
         NoticeEntity notice = noticeRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 공지사항이 존재하지 않습니다."));
+                .orElseThrow(() -> new AppException(ErrorCode.NOT_FOUND, "해당 공지사항이 존재하지 않습니다."));
         noticeRepository.delete(notice);
     }
 }
