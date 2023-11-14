@@ -7,11 +7,10 @@ import java.time.LocalDateTime;
 
 public class NoticeDTO {
 
-    // 공지사항의 모든 정보
+   // 공지사항의 모든 정보
     @Getter
     @Builder
     public static class GetNotice {
-        private String noticeTitle;
         private String noticeContent;
         private LocalDateTime createTime;
         private LocalDateTime updateTime;
@@ -21,11 +20,7 @@ public class NoticeDTO {
     @Builder
     public static class NoticeDto {
         private Long id;
-
-        private String noticeTitle;
-
         private String noticeContent;
-
-        private LocalDateTime updateTime;
+        private LocalDateTime createTime;
     }
 }
