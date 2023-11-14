@@ -12,7 +12,4 @@ import java.util.List;
 public interface StudyGoalRepository extends JpaRepository<StudyGoalEntity, Long> {
     @Query("SELECT e FROM StudyGoalEntity e WHERE e.createTime <= :targetDate ORDER BY e.createTime DESC")
     List<StudyGoalEntity> findLatestGoalsBeforeDate(LocalDateTime targetDate, Pageable pageable);
-
-    @Query("SELECT r.studyGoal FROM StudyGoalEntity r WHERE FUNCTION('MONTH', r.createTime) = :month")
-    Long findByMonth(@Param("month") int month);
 }
