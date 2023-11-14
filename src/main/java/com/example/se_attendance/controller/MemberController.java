@@ -29,7 +29,7 @@ public class MemberController {
     public ResponseEntity<String> login(
                                          @RequestBody MemberDTO.MemberLoginDto memberLoginDto) {
         memberService.login(memberLoginDto);
-        return new ResponseEntity<>("로그인 되었습니다.", HttpStatus.OK);
+        return new ResponseEntity<>(memberService.login(memberLoginDto), HttpStatus.OK);
     }
 
     // 회원 정보 조회 (app)
