@@ -14,7 +14,8 @@ public class StudyGoalController {
 
     //목표시간 설정하기
     @PostMapping("/studygoal")
-    public void setStudyGoal(@RequestBody StudyGoalDTO.SetStudyGoal studyGoalDto){
+    public ResponseEntity<String> setStudyGoal(@RequestBody StudyGoalDTO.SetStudyGoal studyGoalDto){
         studyGoalService.setStudyGoal(studyGoalDto);
+        return new ResponseEntity<>("목표시간이 설정되었습니다.", HttpStatus.OK);
     }
 }
