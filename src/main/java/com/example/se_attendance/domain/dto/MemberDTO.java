@@ -30,6 +30,8 @@ public class MemberDTO {
     public static class Memberdto {
         private String memberId;
 
+        private String memberPw;
+
         private String memberName;
 
         private String memberMajor;
