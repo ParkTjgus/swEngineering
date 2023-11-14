@@ -175,13 +175,10 @@ public class RecordService {
                 .build();
     }
 
-    public List<Long> findMembers(int month) { //Long으로 리턴해서 바뀐 게시글 id값을 받아올까? 고민
-        // studyGoal db에서 이 날짜에 해당하는 목표시간을 가지고 와야함.
-        System.out.println("month : "+month);
-        Long targetTime = studyGoalRepository.findByMonth(month);
-        System.out.println("targetTime : "+targetTime);
-        System.out.println(recordRepository.findAllTime(targetTime, month));
-        return recordRepository.findAllTime(targetTime, month);
+    // 목표 시간 달성한 멤버 출력하기 (web)
+    public List<MemberDTO.rankMember> findMembers(String month) {
+        int targetTime = getStudyGoal(month).getStudyGoal();
+        return recordRepository.findMembers(targetTime, month);
     }
 
     public List<MemberDTO.rankMember> findTop5(String month){
