@@ -2,6 +2,8 @@ package com.example.se_attendance.service;
 
 import com.example.se_attendance.domain.dto.MemberDTO;
 import com.example.se_attendance.domain.entity.MemberEntity;
+import com.example.se_attendance.exeption.AppException;
+import com.example.se_attendance.exeption.ErrorCode;
 import com.example.se_attendance.repository.MemberRepository;
 import com.example.se_attendance.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
