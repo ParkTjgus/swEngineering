@@ -42,9 +42,9 @@ public class MemberController {
     }
 
     // 회원 정보 수정 (app)
-    @PatchMapping("/mypage")
-    public ResponseEntity<String> updateMyInfo(@RequestBody MemberDTO.Memberdto user){
-        memberService.updateMyInfo(user);
+    @PutMapping("/mypage")
+    public ResponseEntity<String> updateMyInfo(Authentication authentication, @RequestBody MemberDTO.Memberdto user){
+        memberService.updateMyInfo(authentication.getName(), user);
         return new ResponseEntity<>("회원 정보가 수정되었습니다.", HttpStatus.OK);
     }
 
