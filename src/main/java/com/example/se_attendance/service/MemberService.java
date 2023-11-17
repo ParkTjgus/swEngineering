@@ -61,9 +61,8 @@ public class MemberService {
     }
 
     // 회원 정보 조회
-    public MemberDTO.Memberdto findUser() {
-        String memberId = JwtUtil.getUserIdFromToken();
-        MemberEntity user = memberRepository.findByMemberId(memberId).orElseThrow(() -> new BadCredentialsException("회원 정보를 찾을 수 없습니다."));
+    public MemberDTO.Memberdto findUser(String memberId) {
+        MemberEntity user = memberRepository.findByMemberId(memberId).orElseThrow(() -> new AppException(ErrorCode.INVALID_MEMBER, "회원 정보를 찾을 수 없습니다."));
         return MemberDTO.Memberdto.builder()
                 .memberId(user.getMemberId())
                 .memberName(user.getMemberName())
