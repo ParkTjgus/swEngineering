@@ -5,6 +5,7 @@ import com.example.se_attendance.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,8 +37,8 @@ public class MemberController {
     // 회원 정보 조회 (app)
     @GetMapping("/mypage")
     @ResponseBody
-    public MemberDTO.Memberdto getMyInfo() {
-        return memberService.findUser();
+    public MemberDTO.Memberdto getMyInfo(Authentication authentication) {
+        return memberService.findUser(authentication.getName());
     }
 
     // 회원 정보 수정 (app)
