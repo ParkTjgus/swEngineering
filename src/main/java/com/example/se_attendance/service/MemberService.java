@@ -29,7 +29,7 @@ public class MemberService {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    // 회원가입
+    // 회원가입 (app)
     @Transactional
     public void signUp(MemberDTO.MemberSignUpDto userDto) throws Exception {
         if (memberRepository.findByMemberId(userDto.getMemberId()).isPresent()) {
@@ -48,7 +48,7 @@ public class MemberService {
         memberRepository.save(user);
     }
 
-    // 로그인
+    // 로그인 (app)
     public String login(MemberDTO.MemberLoginDto memberLoginDto) {
         Long expireTimeMs = 1000 * 60 * 60l;
 
@@ -60,7 +60,7 @@ public class MemberService {
         return JwtUtil.createToken(user.getMemberId(), secretKey, expireTimeMs);
     }
 
-    // 회원 정보 조회
+    // 회원 정보 조회 (app)
     public MemberDTO.Memberdto findUser(String memberId) {
         MemberEntity user = memberRepository.findByMemberId(memberId).orElseThrow(() -> new AppException(ErrorCode.INVALID_MEMBER, "회원 정보를 찾을 수 없습니다."));
         return MemberDTO.Memberdto.builder()
@@ -72,17 +72,17 @@ public class MemberService {
                 .build();
     }
 
-    // 회원 정보 수정
+    // 회원 정보 수정 (app)
     @Transactional
-    public void updateMyInfo(MemberDTO.Memberdto user) {
-        MemberEntity persistance = memberRepository.findByMemberId(user.getMemberId()).orElseThrow(() -> new IllegalArgumentException("회원 정보를 찾을 수 없습니다."));
+    public void updateMyInfo(String memberId, MemberDTO.Memberdto user) {
+        MemberEntity persistance = memberRepository.findByMemberId(memberId).orElseThrow(() -> new AppException(ErrorCode.INVALID_MEMBER, "회원 정보를 찾을 수 없습니다."));
         persistance.setMemberPw(encoder.encode(user.getMemberPw()));
         persistance.setMemberName(user.getMemberName());
         persistance.setMemberMajor(user.getMemberMajor());
         persistance.setMemberState(user.getMemberState());
         persistance.setMemberBirth(user.getMemberBirth());
-        //더티체킹. 영속화된 persistance 객체의 변화가 감지되면 더티체킹이 되어 update문을 날려줌(db에)
     }
+    
     public List<MemberDTO.MemberName> getAllMember(){
         List<MemberEntity> memberEntityList = memberRepository.findAll();
 
