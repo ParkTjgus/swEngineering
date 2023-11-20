@@ -41,34 +41,31 @@ public class NoticeService {
                 .build();
     }
 
-       // 공지사항 생성
+       // 공지사항 생성 (web)
     public void createNotice(NoticeDTO.NoticeDto noticeDto) {
         NoticeEntity notice = new NoticeEntity(noticeDto.getNoticeContent());
         noticeRepository.save(notice);
     }
 
-    // 공지사항 상세 조회
+    // 공지사항 상세 조회 (web)
     public NoticeDTO.NoticeDto findNotice(Long id) {
         NoticeEntity notice = noticeRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.NOT_FOUND, "해당 공지사항이 존재하지 않습니다."));
         return NoticeDTO.NoticeDto.builder()
                 .id(notice.getId())
                 .noticeContent(notice.getNoticeContent())
+                .createTime(notice.getCreateTime())
                 .build();
     }
 
-    // 공지사항 목록 조회
+    // 공지사항 목록 조회 (web)
     @Transactional(readOnly = true)
-    public List<NoticeDTO.NoticeDto> findAll() {
-        return noticeRepository.findAll().stream()
-                .map(notice -> NoticeDTO.NoticeDto.builder()
-                        .id(notice.getId())
-                        .noticeContent(notice.getNoticeContent())
-                        .build())
-                .collect(Collectors.toList());
+    public List<NoticeEntity> findAll() {
+        List<NoticeEntity> notices = noticeRepository.findAllByOrderByCreateTimeDesc();
+        return notices;
     }
 
-    // 공지사항 삭제
+    // 공지사항 삭제 (web)
     public void deleteNotice(Long id) {
         NoticeEntity notice = noticeRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.NOT_FOUND, "해당 공지사항이 존재하지 않습니다."));
