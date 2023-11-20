@@ -17,12 +17,6 @@ public class RecordController {
 
     private final RecordService recordService;
 
-    // 목표 시간 달성한 멤버 출력하기
-//    @GetMapping("/record")
-//    public List<Long> showRecord(@RequestParam String month){
-//        return recordService.findMembers(month);
-//    }
-
     // 기록하기
     @PostMapping("/record")
     public ResponseEntity<?> record(@RequestBody RecordDTO.RecordRequest dto) {
