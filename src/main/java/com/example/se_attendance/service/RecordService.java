@@ -175,12 +175,6 @@ public class RecordService {
                 .build();
     }
 
-    // 목표 시간 달성한 멤버 출력하기 (web)
-//    public List<MemberDTO.rankMember> findMembers(String month) {
-//        int targetTime = getStudyGoal(month).getStudyGoal();
-//        return recordRepository.findMembers(targetTime, month);
-//    }
-
     public List<MemberDTO.rankMember> findTop5(String month){
         String createTime = "%-"+month+"-%" ; //입력받은 month를 createTime format으로 형변환
         List<RecordEntity> top5RecordEntities = recordRepository.findTop5ByCreateTimeOrderByRecordTimeDesc(createTime);
