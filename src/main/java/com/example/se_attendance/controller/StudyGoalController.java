@@ -20,4 +20,10 @@ public class StudyGoalController {
         studyGoalService.setStudyGoal(studyGoalDto);
         return new ResponseEntity<>("목표시간이 설정되었습니다.", HttpStatus.OK);
     }
+
+    // 목표 시간 달성한 멤버 출력하기 (web)
+    @GetMapping("/record")
+    public ResponseEntity<List<MemberDTO.rankMember>> showRecord(){
+        return ResponseEntity.ok().body(studyGoalService.findMembers());
+    }
 }
