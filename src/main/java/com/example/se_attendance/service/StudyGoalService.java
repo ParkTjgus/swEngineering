@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 public class StudyGoalService {
 
     private final StudyGoalRepository studyGoalRepository;
+    private final RecordService recordService;
+
 
     //목표 시간 설정
     public void setStudyGoal(StudyGoalDTO.SetStudyGoal studyGoalDto) {
