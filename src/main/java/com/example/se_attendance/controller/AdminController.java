@@ -14,7 +14,7 @@ public class AdminController {
     public Object loginAdmin(@RequestBody HashMap<String, String> loginInput) {
 
         return "message : "
-                + ((Admin.isAdmin(loginInput.get("adminID"),
+                + ((Admin.isAdmin(loginInput.get("adminId"),
                 loginInput.get("adminPassword"))) ?
                 "로그인에 성공하였습니다." : "아이디 또는 비밀번호가 일치하지 않습니다." );
 
