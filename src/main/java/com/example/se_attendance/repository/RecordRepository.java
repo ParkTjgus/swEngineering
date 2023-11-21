@@ -21,5 +21,9 @@ public interface RecordRepository extends JpaRepository<RecordEntity, Long> {
     List<RecordEntity> findByUserIdMonth(String userId, String month);
 
     //기록시간순으로 top5 정렬하여 가져온다.
-    List<RecordEntity> findTop5ByCreateTimeOrderByRecordTimeDesc(String createTime);
+    @Query("SELECT r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberMajor, SUM(r.recordTime) " +
+            "FROM RecordEntity r " +
+            "WHERE FUNCTION('MONTH', r.createTime) = FUNCTION('MONTH', CURRENT_DATE) " +
+            "GROUP BY r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberId")
+    List<RecordEntity> findTop5();
 }

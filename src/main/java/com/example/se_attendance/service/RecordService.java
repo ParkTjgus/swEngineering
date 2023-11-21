@@ -176,8 +176,7 @@ public class RecordService {
     }
 
     public List<MemberDTO.rankMember> findTop5(String month){
-        String createTime = "%-"+month+"-%" ; //입력받은 month를 createTime format으로 형변환
-        List<RecordEntity> top5RecordEntities = recordRepository.findTop5ByCreateTimeOrderByRecordTimeDesc(createTime);
+        List<RecordEntity> top5RecordEntities = recordRepository.findTop5();
         List<MemberDTO.rankMember> top5Members = new ArrayList<>();
 
         if(top5RecordEntities.isEmpty()) {
@@ -186,7 +185,7 @@ public class RecordService {
 
         for (RecordEntity recordEntity : top5RecordEntities) {
             MemberDTO.rankMember top5Member = MemberDTO.rankMember.builder()
-                    .recordTime(recordEntity.getRecordTime())
+                    .totalRecordTime(recordEntity.getRecordTime())
                     .memberId(recordEntity.getMemberEntity().getMemberId())
                     .memberName(recordEntity.getMemberEntity().getMemberName())
                     .memberMajor(recordEntity.getMemberEntity().getMemberMajor())

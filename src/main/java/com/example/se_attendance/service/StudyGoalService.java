@@ -1,10 +1,16 @@
 package com.example.se_attendance.service;
 
+import com.example.se_attendance.domain.dto.MemberDTO;
 import com.example.se_attendance.domain.dto.StudyGoalDTO;
 import com.example.se_attendance.domain.entity.StudyGoalEntity;
 import com.example.se_attendance.repository.StudyGoalRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor

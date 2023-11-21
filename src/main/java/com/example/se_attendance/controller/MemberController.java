@@ -1,6 +1,8 @@
 package com.example.se_attendance.controller;
 
 import com.example.se_attendance.domain.dto.MemberDTO;
+import com.example.se_attendance.exeption.AppException;
+import com.example.se_attendance.exeption.ErrorCode;
 import com.example.se_attendance.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -51,6 +53,10 @@ public class MemberController {
     //DB에 저장된 회원 정보 전부 가져오기
     @GetMapping("/info")
     public ResponseEntity<List<MemberDTO.MemberName>> getAllMember(){
+        List<MemberDTO.MemberName> members = memberService.getAllMember();
+        if (members==null) {
+            throw new AppException(ErrorCode.NOT_FOUND, "저장된 회원 정보가 없습니다.");
+        }
         return ResponseEntity.ok().body(memberService.getAllMember());
     }
 
@@ -59,16 +65,16 @@ public class MemberController {
     public MemberDTO.Memberdto getMemberDetail(@PathVariable String memberId){
         MemberDTO.Memberdto memberDto = memberService.findById(memberId);
         if (memberDto==null){
-            assert true;
+            throw new AppException(ErrorCode.NOT_FOUND, "저장된 회원 정보가 없습니다.");
         }
         return memberDto;
     }
 
+    //회원 정보 수정 (Web)
     @PutMapping("/{memberId}/edit")
     public String updateMemberInfo(@PathVariable String memberId, @ModelAttribute MemberDTO.Memberdto memberDto){
         memberService.update(memberDto);
         String result = "회원 정보 수정에 성공 했습니다.";
-        //String reulst = "저장된 회원 정보가 없습니다.";
         return "message : "+result;
     }
 
