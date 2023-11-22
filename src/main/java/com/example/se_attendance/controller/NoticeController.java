@@ -1,6 +1,7 @@
 package com.example.se_attendance.controller;
 
 import com.example.se_attendance.domain.dto.NoticeDTO;
+import com.example.se_attendance.domain.entity.NoticeEntity;
 import com.example.se_attendance.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

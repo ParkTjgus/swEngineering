@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         .then((responseData) => {
             // 성공적으로 응답을 받았을 때 실행
             if (responseData.message) {
-                // localStorage.setItem('adminId', adminId);
+                // localStorage.setItem('adminID', adminID);
                 const resultMessage = responseData.message;
                 displayResult(resultMessage);
             } else {

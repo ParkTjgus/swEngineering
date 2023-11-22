@@ -2,7 +2,7 @@ document.getElementById('signin-form').addEventListener('submit', function(event
     // event.preventDefault();
 
     // 입력필드에서 값 가져오기
-    const adminId = document.getElementById('adminId').value;
+    const adminID = document.getElementById('adminId').value;
     const adminPassword = document.getElementById('adminPassword').value;
 
     // 서버 URL 및 URI
@@ -17,7 +17,7 @@ document.getElementById('signin-form').addEventListener('submit', function(event
                 'Content-Type': 'application/json', // 데이터 타입을 JSON으로 설정
             },
             body: JSON.stringify({
-                adminId: adminId,
+                adminID: adminID,
                 adminPassword: adminPassword
             })
         })
@@ -38,7 +38,7 @@ document.getElementById('signin-form').addEventListener('submit', function(event
         .then((responseData) => {
             // 성공적으로 응답을 받았을 때 실행
             if (responseData.message) {
-                // localStorage.setItem('adminId', adminId);
+                // localStorage.setItem('adminID', adminID);
                 const resultMessage = responseData.message;
                 displayResult(resultMessage);
             } else {

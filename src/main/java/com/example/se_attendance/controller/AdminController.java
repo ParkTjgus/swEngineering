@@ -9,6 +9,10 @@ import java.util.HashMap;
 
 @RestController
 public class AdminController {
+    @GetMapping("/admin/login")
+    public String adminPage() {
+        return "login";
+    }
 
     @GetMapping("/admin/login")
     public Object loginAdmin(@RequestBody HashMap<String, String> loginInput) {
