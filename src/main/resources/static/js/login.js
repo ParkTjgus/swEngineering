@@ -48,7 +48,7 @@ document.getElementById('signin-form').addEventListener('submit', function(event
 
 
             // 페이지 이동
-            window.location.href = serverUrl + 'mem_manage';
+            window.location.href = serverUrl + 'html/mem_manage';
         })
         // 요청 또는 응답처리 중에 오류가 발생한 경우
         .catch((error) => {

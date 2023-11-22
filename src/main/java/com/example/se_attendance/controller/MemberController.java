@@ -50,39 +50,5 @@ public class MemberController {
         return new ResponseEntity<>("회원 정보가 수정되었습니다.", HttpStatus.OK);
     }
 
-    //DB에 저장된 회원 정보 전부 가져오기
-    @GetMapping("/info")
-    public ResponseEntity<List<MemberDTO.MemberName>> getAllMember(){
-        List<MemberDTO.MemberName> members = memberService.getAllMember();
-        if (members==null) {
-            throw new AppException(ErrorCode.NOT_FOUND, "저장된 회원 정보가 없습니다.");
-        }
-        return ResponseEntity.ok().body(memberService.getAllMember());
-    }
 
-    //특정 회원 정보 상세 조회
-    @GetMapping("/{memberId}/detail")
-    public MemberDTO.Memberdto getMemberDetail(@PathVariable String memberId){
-        MemberDTO.Memberdto memberDto = memberService.findById(memberId);
-        if (memberDto==null){
-            throw new AppException(ErrorCode.NOT_FOUND, "저장된 회원 정보가 없습니다.");
-        }
-        return memberDto;
-    }
-
-    //회원 정보 수정 (Web)
-    @PutMapping("/{memberId}/edit")
-    public String updateMemberInfo(@PathVariable String memberId, @ModelAttribute MemberDTO.Memberdto memberDto){
-        memberService.update(memberDto);
-        String result = "회원 정보 수정에 성공 했습니다.";
-        return "message : "+result;
-    }
-
-    //특정 회원 정보 삭제
-    @DeleteMapping("/{memberId}/delete")
-    public Object deleteMember(@PathVariable String memberId){
-        memberService.deleteById(memberId);
-
-        return "memberId : "+memberId;
-    }
 }
