@@ -39,8 +39,8 @@ public class MemberController {
     // 회원 정보 조회 (app)
     @GetMapping("/mypage")
     @ResponseBody
-    public MemberDTO.Memberdto getMyInfo(Authentication authentication) {
-        return memberService.findUser(authentication.getName());
+    public ResponseEntity<MemberDTO.Memberdto> getMyInfo(Authentication authentication) {
+        return ResponseEntity.ok().body(memberService.findUser(authentication.getName()));
     }
 
     // 회원 정보 수정 (app)
