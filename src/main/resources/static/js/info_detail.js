@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // localStorage에서 noticeId
     const noticeId = localStorage.getItem('noticeId');
     const serverUrl = 'http://43.202.35.94:8080';
-   
+
     // 서버로부터 정보를 가져오는 함수
     function getNoticeDetail(serverUrl) {
         const uri = `/notice/${noticeId}`;

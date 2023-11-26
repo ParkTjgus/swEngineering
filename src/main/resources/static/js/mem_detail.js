@@ -2,10 +2,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // localStorage에서 memberId
     const memberId = localStorage.getItem('memberId');
     const serverUrl = 'http://43.202.35.94:8080';
-   
+
     // 서버로부터 정보를 가져오는 함수
     function getMemberDetail(serverUrl) {
-        const uri = `/member/${memberId}/detail`;
+        const uri = `/admin/${memberId}/detail`;
 
         // fetch API를 사용하여 데이터 가져오기
         fetch(serverUrl + uri, {
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // 회원삭제함수
     function deleteMember(serverUrl) {
-        const uri = `/member/${memberId}/delete`;
+        const uri = `/admin/${memberId}/delete`;
 
         // fetch API를 사용하여 데이터 가져오기
         fetch(serverUrl + uri, {
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 throw new Error("데이터 가져오기 실패: " + response.status + " " + response.statusText);
             }
             window.alert("회원삭제 성공");
-            window.location.href = serverUrl + 'mem_manage';
+            window.location.href = serverUrl + '/html/mem_manage';
         })
         .catch(error => {
             console.error("데이터 가져오기 실패:", error);
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         deleteMember(serverUrl);  // 회원삭제함수실행
         window.alert("회원이 삭제됐습니다");
         // url수정하기
-        window.location.href = serverUrl + 'mem_manage';
+        window.location.href = serverUrl + '/html/mem_manage';
         // window.location.href = 'http://127.0.0.1:5500/' + 'mem_manage.html';
     })
 

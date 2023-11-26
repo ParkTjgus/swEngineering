@@ -1,5 +1,6 @@
 package com.example.se_attendance;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,13 @@ public class Admin {
     private static String adminPW = "admin";
     private double latitude;
     private double longitude;
+    private String message;
+
+    //admin 기능들의 결과 반환 메소드
+    @Builder
+    public Admin(String message){
+        this.message = message;
+    }
 
     public static boolean isAdmin(String inputID, String inputPW){
         //로그인 성공 시

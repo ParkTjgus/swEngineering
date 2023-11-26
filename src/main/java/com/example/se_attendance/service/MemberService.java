@@ -82,7 +82,7 @@ public class MemberService {
         persistance.setMemberState(user.getMemberState());
         persistance.setMemberBirth(user.getMemberBirth());
     }
-    
+
     public List<MemberDTO.MemberName> getAllMember(){
         List<MemberEntity> memberEntityList = memberRepository.findAll();
 

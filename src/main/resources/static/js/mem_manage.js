@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
     const serverUrl = 'http://43.202.35.94:8080';
-    
+
     // 서버로부터 회원 목록 동적으로 가져오는 함수
     function getMember() {
-        const uri = '/member/info';
+        const uri = '/admin/memInfo';
         
         fetch(serverUrl + uri, {
             method: 'GET',
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // 상세조회 버튼 클릭 시
     document.getElementsByClassName('btn_detail').addEventListener('click', function() {
-        window.location.href = serverUrl + 'mem_detail';
+        window.location.href = serverUrl + '/html/mem_detail';
     })
 
     // 로그아웃 버튼 클릭 시
@@ -78,6 +78,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         // 로컬 스토리지 클리어
         localStorage.clear();
         alert('로그아웃되었습니다.');
-        window.location.href = serverUrl + 'login';
+        window.location.href = serverUrl + '/html/login';
     });
 });
