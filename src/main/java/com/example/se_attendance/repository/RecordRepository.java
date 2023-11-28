@@ -25,5 +25,11 @@ public interface RecordRepository extends JpaRepository<RecordEntity, Long> {
             "FROM RecordEntity r " +
             "WHERE FUNCTION('MONTH', r.createTime) = FUNCTION('MONTH', CURRENT_DATE) " +
             "GROUP BY r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberId")
-    List<RecordEntity> findTop5();
+    List<RecordEntity> findTimeTop5();
+
+    @Query("SELECT r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberMajor, count(r.createTime) " +
+            "FROM RecordEntity r " +
+            "WHERE FUNCTION('MONTH', r.createTime) = FUNCTION('MONTH', CURRENT_DATE) " +
+            "GROUP BY r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberId")
+    List<RecordEntity> findDayTop5();
 }

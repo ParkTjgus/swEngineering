@@ -29,6 +29,7 @@ public class SecurityConfig {
                 .antMatchers("/admin/**","/html/**").permitAll()
                 .antMatchers("/member/login","/member/signup").permitAll()
                 .antMatchers("/admin/**","/admin").permitAll()
+                .antMatchers("/rank/**").permitAll()
                 .antMatchers("/test/**").permitAll() // test는 언제나 가능
                 .anyRequest().authenticated()
                 .and()

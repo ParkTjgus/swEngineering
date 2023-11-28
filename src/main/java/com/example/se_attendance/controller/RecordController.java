@@ -50,7 +50,12 @@ public class RecordController {
     }
 
     @GetMapping("/rank/time/{month}")
-    public ResponseEntity<List<MemberDTO.rankMember>> getTop5(@PathVariable String month){
-        return ResponseEntity.ok().body(recordService.findTop5(month));
+    public ResponseEntity<List<MemberDTO.rankMember>> getTimeTop5(@PathVariable String month){
+        return ResponseEntity.ok().body(recordService.findTimeTop5(month));
+    }
+
+    @GetMapping("/rank/day/{month}")
+    public ResponseEntity<List<MemberDTO.rankMember>> getDayTop5(@PathVariable String month){
+        return ResponseEntity.ok().body(recordService.findDayTop5(month));
     }
 }
