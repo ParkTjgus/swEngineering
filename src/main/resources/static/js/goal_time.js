@@ -134,6 +134,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         })
         .then(data=>{
             console.log('달성 멤버 출력!');
+            console.log('data : ',data);
+
 
             // 서버 응답 데이터를 처리하여 문제 목록에 추가
             data.forEach((response) => {
@@ -197,7 +199,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // 체크박스 클릭시 목표달성멤버만 출력
     document.getElementById('btn_check').addEventListener('change', function() {
         const memberList = document.querySelector(".member_list");
+
+        // memberList 내의 title div 요소 유지
+        const titleDiv = memberList.querySelector(".title");
+
         memberList.innerHTML = ''; // 기존의 멤버 목록을 비워줌
+        memberList.appendChild(titleDiv); // titleDiv 다시 추가
         if (this.checked) {
             // 체크박스가 체크된 경우
             getAchieveMem();
