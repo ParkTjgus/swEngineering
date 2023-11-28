@@ -32,7 +32,8 @@ public class RecordEntity {
     private LocalDateTime updateTime;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "memberId")
     private MemberEntity memberEntity;
+
 }

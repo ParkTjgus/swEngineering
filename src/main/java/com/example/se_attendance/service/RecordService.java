@@ -175,45 +175,45 @@ public class RecordService {
                 .build();
     }
 
-    public List<MemberDTO.rankMember> findTimeTop5(String month){
-        List<RecordEntity> top5RecordEntities = recordRepository.findTimeTop5();
-        List<MemberDTO.rankMember> top5Members = new ArrayList<>();
-
-        if(top5RecordEntities.isEmpty()) {
-            throw new AppException(ErrorCode.NOT_FOUND, "저장된 회원 정보가 없습니다.");
-        }
-
-        for (RecordEntity recordEntity : top5RecordEntities) {
-            MemberDTO.rankMember top5Member = MemberDTO.rankMember.builder()
-                    .totalRecordTime(recordEntity.getRecordTime())
-                    .memberId(recordEntity.getMemberEntity().getMemberId())
-                    .memberName(recordEntity.getMemberEntity().getMemberName())
-                    .memberMajor(recordEntity.getMemberEntity().getMemberMajor())
-                    .build();
-            top5Members.add(top5Member);
-        }
-
-        return top5Members;
-    }
-
-    public List<MemberDTO.rankMember> findDayTop5(String month){
-        List<RecordEntity> top5RecordEntities = recordRepository.findDayTop5();
-        List<MemberDTO.rankMember> top5Members = new ArrayList<>();
-
-        if(top5RecordEntities.isEmpty()) {
-            throw new AppException(ErrorCode.NOT_FOUND, "저장된 회원 정보가 없습니다.");
-        }
-
-        for (RecordEntity recordEntity : top5RecordEntities) {
-            MemberDTO.rankMember top5Member = MemberDTO.rankMember.builder()
-                    .totalRecordTime(recordEntity.getRecordTime())
-                    .memberId(recordEntity.getMemberEntity().getMemberId())
-                    .memberName(recordEntity.getMemberEntity().getMemberName())
-                    .memberMajor(recordEntity.getMemberEntity().getMemberMajor())
-                    .build();
-            top5Members.add(top5Member);
-        }
-
-        return top5Members;
-    }
+//    public List<MemberDTO.rankMember> findTimeTop5(String month){
+//        List<RecordEntity> top5RecordEntities = recordRepository.findTimeTop5();
+//        List<MemberDTO.rankMember> top5Members = new ArrayList<>();
+//
+//        if(top5RecordEntities.isEmpty()) {
+//            throw new AppException(ErrorCode.NOT_FOUND, "저장된 회원 정보가 없습니다.");
+//        }
+//
+//        for (RecordEntity recordEntity : top5RecordEntities) {
+//            MemberDTO.rankMember top5Member = MemberDTO.rankMember.builder()
+//                    .totalRecordTime(recordEntity.getRecordTime())
+//                    .memberId(recordEntity.getMemberEntity().getMemberId())
+//                    .memberName(recordEntity.getMemberEntity().getMemberName())
+//                    .memberMajor(recordEntity.getMemberEntity().getMemberMajor())
+//                    .build();
+//            top5Members.add(top5Member);
+//        }
+//
+//        return top5Members;
+//    }
+//
+//    public List<MemberDTO.rankMember> findDayTop5(String month){
+//        List<RecordEntity> top5RecordEntities = recordRepository.findDayTop5();
+//        List<MemberDTO.rankMember> top5Members = new ArrayList<>();
+//
+//        if(top5RecordEntities.isEmpty()) {
+//            throw new AppException(ErrorCode.NOT_FOUND, "저장된 회원 정보가 없습니다.");
+//        }
+//
+//        for (RecordEntity recordEntity : top5RecordEntities) {
+//            MemberDTO.rankMember top5Member = MemberDTO.rankMember.builder()
+//                    .totalRecordTime(recordEntity.getRecordTime())
+//                    .memberId(recordEntity.getMemberEntity().getMemberId())
+//                    .memberName(recordEntity.getMemberEntity().getMemberName())
+//                    .memberMajor(recordEntity.getMemberEntity().getMemberMajor())
+//                    .build();
+//            top5Members.add(top5Member);
+//        }
+//
+//        return top5Members;
+//    }
 }

@@ -30,7 +30,7 @@ public class MemberEntity {
     private LocalDateTime createTime;
 
     @Builder.Default
-    @OneToMany(mappedBy = "memberEntity")
+    @OneToMany(mappedBy = "memberEntity", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<RecordEntity> recordEntityList = new ArrayList<>();
 
 }
