@@ -16,5 +16,4 @@ public interface MemberRepository extends JpaRepository<MemberEntity, String> {
     @Query("DELETE from MemberEntity m where m.memberId = :memberId")
     @Modifying
     int deleteByMemberId(@Param("memberId") String memberId);
-    //void deleteByMemberId(String memberId);
 }
