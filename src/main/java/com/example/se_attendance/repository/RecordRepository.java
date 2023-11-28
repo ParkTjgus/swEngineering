@@ -21,17 +21,17 @@ public interface RecordRepository extends JpaRepository<RecordEntity, Long> {
     List<RecordEntity> findByUserIdMonth(String userId, String month);
 
     //기록시간순으로 top5 정렬하여 가져온다.
-    @Query("SELECT r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberMajor, SUM(r.recordTime)" +
-            "FROM RecordEntity r " +
-            "WHERE FUNCTION('MONTH', r.createTime) = FUNCTION('MONTH', CURRENT_DATE) " +
-            "GROUP BY r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberId " +
-            "ORDER BY SUM(r.recordTime) DESC LIMIT 5")
-    List<RecordEntity> findTimeTop5();
+//     @Query("SELECT r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberMajor, SUM(r.recordTime)" +
+//             "FROM RecordEntity r " +
+//             "WHERE FUNCTION('MONTH', r.createTime) = FUNCTION('MONTH', CURRENT_DATE) " +
+//             "GROUP BY r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberId " +
+//             "ORDER BY SUM(r.recordTime) DESC LIMIT 5")
+//     List<RecordEntity> findTimeTop5();
 
-    @Query("SELECT r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberMajor, count(r.createTime) " +
-            "FROM RecordEntity r " +
-            "WHERE FUNCTION('MONTH', r.createTime) = FUNCTION('MONTH', CURRENT_DATE) " +
-            "GROUP BY r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberId " +
-            "ORDER BY count(r.createTime) DESC LIMIT 5")
-    List<RecordEntity> findDayTop5();
+//     @Query("SELECT r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberMajor, count(r.createTime) " +
+//             "FROM RecordEntity r " +
+//             "WHERE FUNCTION('MONTH', r.createTime) = FUNCTION('MONTH', CURRENT_DATE) " +
+//             "GROUP BY r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberId " +
+//             "ORDER BY count(r.createTime) DESC LIMIT 5")
+//     List<RecordEntity> findDayTop5();
 }

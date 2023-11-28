@@ -21,8 +21,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             return response.json();
         })
         .then(data=>{
+
             // 서버 응답 데이터를 처리하여 공지사항 목록에 추가
-            data.forEach((response,index) => {
+            data.forEach((response) => {
                 // 서버 응답 데이터를 반복하며 공지사항 목록 생성 및 화면에 추가하기
 
                 // info_list 요소 선택
@@ -42,8 +43,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 noticeTime.classList.add("noticeTime");
                 noticeTime.textContent = `${response.noticeTime}`;
 
-                // 공지사항별 index추가
-                const noticeId = `${index + 1}`;
+                // 공지사항별 index
+                const noticeId = `${response.id}`;
+                console.log('noticeId : ', noticeId);
 
                 // 조회 버튼 생성
                 const btn_detail = document.createElement("button");
@@ -71,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     getNotice();
 
     // 로그아웃 버튼 클릭 시
-    document.getElementById('btn_logout').addEventListener('click', function() {
+    document.getElementsByClassName('btn_logout').addEventListener('click', function() {
         // 쿠키 제거
         document.cookie = "userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         // 로컬 스토리지 클리어

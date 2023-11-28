@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
 
     // 로그아웃 버튼 클릭 시
-    document.getElementById('btn_logout').addEventListener('click', function() {
+    document.getElementsByClassName('btn_logout').addEventListener('click', function() {
         // 쿠키 제거
         // 과거의 날짜로 설정하여 쿠키를 즉시 만료
         document.cookie = "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

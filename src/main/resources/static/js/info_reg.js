@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     btnRegister.addEventListener('click', postInfo(serverUrl));
 
     // 로그아웃 버튼 클릭 시
-    document.getElementById('btn_logout').addEventListener('click', function() {
+    document.getElementsByClassName('btn_logout').addEventListener('click', function() {
         // 쿠키 제거
         document.cookie = "userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         // 로컬 스토리지 클리어
