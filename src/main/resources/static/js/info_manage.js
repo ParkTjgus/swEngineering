@@ -21,10 +21,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
             return response.json();
         })
         .then(data=>{
+
             // 서버 응답 데이터를 처리하여 공지사항 목록에 추가
             data.forEach((response) => {
                 // 서버 응답 데이터를 반복하며 공지사항 목록 생성 및 화면에 추가하기
 
+                console.log('response : ', response);
                 // info_list 요소 선택
                 const info_list = document.querySelector(".info_list");
 
@@ -38,23 +40,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 noticeContent.textContent = `${response.noticeContent}`;
         
                 // 등록시간 표시하는 요소 생성
-                const noticeTime = document.createElement("div");
-                noticeTime.classList.add("noticeTime");
-                noticeTime.textContent = `${response.noticeTime}`;
+                const createTime = document.createElement("div");
+                createTime.classList.add("createTime");
+                createTime.textContent = `${response.createTime}`;
+
+                // 공지사항별 index
+                const noticeId = `${response.id}`;
+                console.log('noticeId : ', noticeId);
 
                 // 조회 버튼 생성
                 const btn_detail = document.createElement("button");
                 btn_detail.classList.add("btn_detail");
-                btn_detail.textContent = "풀이 보기";
+                btn_detail.textContent = "상세정보";
                 btn_detail.addEventListener("click", () => {
                     // 클릭 시 페이지 이동
-                    localStorage.setItem('noticeId', response.id);
-                    window.location.href = serverUrl + 'info_detail';
+                    localStorage.setItem('noticeId', noticeId);
+                    window.location.href = serverUrl + `/html/info_detail`;
+                    
                 });
                 
                 // 만든 요소들을 리스트에 추가하기
                 infoDiv.appendChild(noticeContent);
-                infoDiv.appendChild(noticeTime);
+                infoDiv.appendChild(createTime);
                 infoDiv.appendChild(btn_detail);
                 info_list.appendChild(infoDiv);
             })
@@ -66,18 +73,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     getNotice();
 
-    // 상세조회 버튼 클릭 시
-    document.getElementsByClassName('btn_detail').addEventListener('click', function() {
-        window.location.href = serverUrl + 'mem_detail';
-    })
+    // 등록 버튼 클릭 시
+    document.querySelector('.btn_goto_register').addEventListener('click', function() {
+        console.log('클릭함!');
+        //window.location.href = serverUrl + '/html/info_reg';
+    });
+
 
     // 로그아웃 버튼 클릭 시
-    document.getElementById('btn_logout').addEventListener('click', function() {
+    document.querySelector('.btn_logout').addEventListener('click', function() {
         // 쿠키 제거
         document.cookie = "userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         // 로컬 스토리지 클리어
         localStorage.clear();
         alert('로그아웃되었습니다.');
-        window.location.href = serverUrl + 'login';
+        window.location.href = serverUrl + 'html/login';
     });
 });

@@ -28,6 +28,7 @@ public interface RecordRepository extends JpaRepository<RecordEntity, Long> {
     @Query("SELECT e FROM RecordEntity e WHERE e.memberEntity.memberId = :userId AND MONTH(e.createTime) = CAST(:month AS integer)")
     List<RecordEntity> findByUserIdMonth(String userId, String month);
 
+<<<<<<< HEAD
     List<RecordEntity> findByMemberEntity(MemberEntity member);
 
 //    //기록시간순으로 top5 정렬하여 가져온다.
@@ -44,4 +45,20 @@ public interface RecordRepository extends JpaRepository<RecordEntity, Long> {
 //            "GROUP BY r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberId " +
 //            "ORDER BY totalRecordDay DESC LIMIT 5")
 //    List<RecordEntity> findDayTop5();
+=======
+    //기록시간순으로 top5 정렬하여 가져온다.
+//     @Query("SELECT r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberMajor, SUM(r.recordTime)" +
+//             "FROM RecordEntity r " +
+//             "WHERE FUNCTION('MONTH', r.createTime) = FUNCTION('MONTH', CURRENT_DATE) " +
+//             "GROUP BY r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberId " +
+//             "ORDER BY SUM(r.recordTime) DESC LIMIT 5")
+//     List<RecordEntity> findTimeTop5();
+
+//     @Query("SELECT r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberMajor, count(r.createTime) " +
+//             "FROM RecordEntity r " +
+//             "WHERE FUNCTION('MONTH', r.createTime) = FUNCTION('MONTH', CURRENT_DATE) " +
+//             "GROUP BY r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberId " +
+//             "ORDER BY count(r.createTime) DESC LIMIT 5")
+//     List<RecordEntity> findDayTop5();
+>>>>>>> 6e23a1839196ffc44915bc62fb015f9ab566635c
 }

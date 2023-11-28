@@ -24,7 +24,7 @@ public class StudyGoalController {
     //goalTime 페이지 반환 코드
     @GetMapping("/html/goal_time")
     public String goalTimePage() {
-        return "goalTime";
+        return "goal_time";
     }
 
     //목표시간 설정하기

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/info_manage.css">
     <title>회원관리</title>
 </head>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <body>
     <div class="container">
 
@@ -24,9 +25,9 @@
 
             <div class="menu_right">
                 <ul>
-                    <li><a href="mem_manage.html">회원관리</a></li>
+                    <li><a href="/html/mem_manage">회원관리</a></li>
                     <li class="now_state"><a href="#">공지사항</a></li>
-                    <li><a href="goalTime.html">목표 시간 설정</a></li>
+                    <li><a href="/html/goal_time">목표 시간 설정</a></li>
                 </ul>
             </div>
 
@@ -36,7 +37,7 @@
                     <div class="h1_container">
                         <h1>공지사항 조회</h1>
                         <!-- 이동하기 기능넣기(수정) -->
-                        <button id="btn_register"><a href="info_reg.html">등록</a></button>
+                        <button class="btn_goto_register"><a href="/html/info_reg">등록</a></button>
                     </div>
                     
                     <div class="content">
@@ -45,33 +46,26 @@
                         <div class="info_list">
                             <div class="title">
                                 <div class="noticeContent">공지사항 내용</div>    
-                                <div class="noticeTime">등록시간</div>
+                                <div class="createTime">등록시간</div>
                                 <div class="non_btn"></div>  
                             </div>
                             
                             <!-- 주석예정 -->
-                            <div class="info">
+                            <!-- <div class="info">
                                 <div class="noticeContent">공지사항 내용</div>    
-                                <div class="noticeTime">2023.09.20</div>
-                                <!-- 버튼클릭시 화면전환(수정) -->
+                                <div class="createTime">2023.09.20</div>
                                 <button type="submit" class="btn_detail">조회</button>  
                             </div>
                             <div class="info">
                                 <div class="noticeContent">공지사항 내용</div>    
-                                <div class="noticeTime">2023.09.20</div>
-                                <!-- 버튼클릭시 화면전환(수정) -->
+                                <div class="createTime">2023.09.20</div>
                                 <button type="submit" class="btn_detail">조회</button>  
-                            </div>
+                            </div> -->
 
-                            
                         </div>
-                
-
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
     <script src="/js/info_manage.js"></script>

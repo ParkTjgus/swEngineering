@@ -12,8 +12,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            }
         })
         .then(response=>{
             if (!response.ok) {
@@ -46,11 +45,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 // 조회 버튼 생성
                 const btn_detail = document.createElement("button");
                 btn_detail.classList.add("btn_detail");
-                btn_detail.textContent = "풀이 보기";
+                btn_detail.textContent = "상세정보";
                 btn_detail.addEventListener("click", () => {
                     // 클릭 시 페이지 이동
                     localStorage.setItem('memberId', response.memberId);
-                    window.location.href = serverUrl + 'mem_detail';
+                    window.location.href = serverUrl + '/html/mem_detail';
                 });
 
             
@@ -74,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
 
     // 로그아웃 버튼 클릭 시
-    document.getElementById('btn_logout').addEventListener('click', function() {
+    document.getElementsByClassName('btn_logout').addEventListener('click', function() {
         // 쿠키 제거
         document.cookie = "userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         // 로컬 스토리지 클리어
