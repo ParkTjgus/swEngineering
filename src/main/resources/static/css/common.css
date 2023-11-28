@@ -201,6 +201,7 @@ button:hover{
     color: var(--DarkWhite);
     font-size: 18px;
     font-weight: bold;
+    margin-left: 20px;
 }
 
 .btn_detail:hover,

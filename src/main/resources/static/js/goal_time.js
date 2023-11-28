@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // 멤버요청 함수
     function getMember() {
-        const uri = '/admin/member/info';
+        const uri = '/admin/memInfo';
         
         fetch(serverUrl + uri, {
             method: 'GET',
@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             // 서버 응답 데이터를 처리하여 문제 목록에 추가
             data.forEach((response) => {
                 // 서버 응답 데이터를 반복하며 문제 목록 생성 및 화면에 추가하기
+                console.log('response : ',response);
 
                 // member_list 요소 선택
                 const member_list = document.querySelector(".member_list");
@@ -95,11 +96,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 // 조회 버튼 생성
                 const btn_detail = document.createElement("button");
                 btn_detail.classList.add("btn_detail");
-                btn_detail.textContent = "풀이 보기";
+                btn_detail.textContent = "상세정보";
                 btn_detail.addEventListener("click", () => {
                     // 클릭 시 페이지 이동
                     localStorage.setItem('memberId', response.memberId);
-                    window.location.href = serverUrl + 'mem_detail';
+                    window.location.href = serverUrl + '/html/mem_detail';
                 });
 
             
