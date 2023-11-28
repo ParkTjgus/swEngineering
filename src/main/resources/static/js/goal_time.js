@@ -139,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             data.forEach((response) => {
                 // 서버 응답 데이터를 반복하며 문제 목록 생성 및 화면에 추가하기
 
+                console.log(response);
                 // member_list 요소 선택
                 const member_list = document.querySelector(".member_list");
 
@@ -156,7 +157,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 memberId.classList.add("memberId");
                 memberId.textContent = `${response.memberId}`;
 
-
                 // 출석시간 표시 요소 생성
                 const attendTime = document.createElement("div");
                 attendTime.classList.add("attendTime");
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 // 조회 버튼 생성
                 const btn_detail = document.createElement("button");
                 btn_detail.classList.add("btn_detail");
-                btn_detail.textContent = "풀이 보기";
+                btn_detail.textContent = "상세정보";
                 btn_detail.addEventListener("click", () => {
                     // 클릭 시 페이지 이동
                     localStorage.setItem('memberId', response.memberId);
@@ -192,15 +192,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
         alert(message);
     }
 
+    getMember();
 
     // 체크박스 클릭시 목표달성멤버만 출력
     document.getElementById('btn_check').addEventListener('change', function() {
+        const memberList = document.querySelector(".member_list");
+        memberList.innerHTML = ''; // 기존의 멤버 목록을 비워줌
         if (this.checked) {
             // 체크박스가 체크된 경우
             getAchieveMem();
         } else {
             // 체크박스가 해제된 경우
-            getMember()
+            getMember();
         }
     });
 
