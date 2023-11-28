@@ -44,7 +44,4 @@ public interface RecordRepository extends JpaRepository<RecordEntity, Long> {
 //            "GROUP BY r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberId " +
 //            "ORDER BY totalRecordDay DESC LIMIT 5")
 //    List<RecordEntity> findDayTop5();
-
-
-
 }

@@ -175,7 +175,6 @@ public class RecordService {
                 .build();
     }
 
-
     public List<MemberDTO.rankMember> findTimeTop5(String month){
         List<RecordEntity> top5RecordEntities = null; //recordRepository.findTimeTop5();
         List<MemberDTO.rankMember> top5Members = new ArrayList<>();
@@ -217,5 +216,4 @@ public class RecordService {
 
         return top5Members;
     }
-
 }
