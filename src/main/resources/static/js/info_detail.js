@@ -20,11 +20,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
             if (!response.ok) {
                 console.log("서버응답 : ", response); // 토큰을 콘솔에 출력
                 throw new Error("데이터 가져오기 실패: " + response.status + " " + response.statusText);
-                //response.status = 응답상태코드
             }
             return response.json(); // JSON 형식의 응답 데이터를 파싱
         })
         .then(data => {
+            console.log('data : ', data);
             // 데이터를 화면에 표시
             document.querySelector(".updateTime").textContent = data.updateTime;
             document.querySelector(".noticeContent").textContent = data.noticeContent;
@@ -65,9 +65,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
 
     // 로그아웃 버튼 클릭 시
-    document.getElementsByClassName('btn_logout').addEventListener('click', function() {
+    const logoutButton = document.querySelector('.btn_logout');
+    logoutButton.addEventListener('click', function() {
         // 쿠키 제거
-        // 과거의 날짜로 설정하여 쿠키를 즉시 만료
         document.cookie = "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         // 로컬 스토리지 클리어
         localStorage.clear();

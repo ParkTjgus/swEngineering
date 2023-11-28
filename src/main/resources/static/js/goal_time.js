@@ -39,10 +39,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 // 메시지 속성이 없는 경우 예외 처리
                 displayResult('목표시간 설정 성공: 메시지 없음');
             }
-
-
             // 페이지 이동
-            window.location.href = serverUrl + 'mem_manage';
+            // window.location.href = serverUrl + '/html/';
         })
         // 요청 또는 응답처리 중에 오류가 발생한 경우
         .catch((error) => {
@@ -72,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             return response.json();
         })
         .then(data=>{
+            console.log('전체 멤버 출력!');
             // 서버 응답 데이터를 처리하여 문제 목록에 추가
             data.forEach((response) => {
                 // 서버 응답 데이터를 반복하며 문제 목록 생성 및 화면에 추가하기
@@ -133,6 +132,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             return response.json();
         })
         .then(data=>{
+            console.log('달성 멤버 출력!');
+
             // 서버 응답 데이터를 처리하여 문제 목록에 추가
             data.forEach((response) => {
                 // 서버 응답 데이터를 반복하며 문제 목록 생성 및 화면에 추가하기
