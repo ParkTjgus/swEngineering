@@ -1,8 +1,10 @@
 package com.example.se_attendance.controller;
 
+import com.example.se_attendance.Admin;
 import com.example.se_attendance.domain.dto.NoticeDTO;
 import com.example.se_attendance.domain.entity.NoticeEntity;
 import com.example.se_attendance.service.NoticeService;
+import com.example.se_attendance.utils.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,9 +39,10 @@ public class NoticeController {
 
    //공지사항 생성 (web)
     @PostMapping("/admin/notice")
-    public ResponseEntity<String> createNotice(@RequestBody NoticeDTO.NoticeDto noticeDto){
+    public ResponseEntity<?> createNotice(@RequestBody NoticeDTO.NoticeDto noticeDto){
         noticeService.createNotice(noticeDto);
-        return new ResponseEntity<>("공지사항이 등록되었습니다.", HttpStatus.OK);
+        return ResponseUtil.successResponse("공지사항이 등록되었습니다.");
+
     }
 
     //공지사항 조회 (web)
@@ -56,8 +59,8 @@ public class NoticeController {
 
     //공지사항 삭제 (web)
     @DeleteMapping ("/admin/notice/{id}")
-    public ResponseEntity<String> deleteNotice(@PathVariable Long id){
+    public ResponseEntity<?> deleteNotice(@PathVariable Long id){
         noticeService.deleteNotice(id);
-        return new ResponseEntity<>("공지사항이 삭제되었습니다.", HttpStatus.OK);
+        return ResponseUtil.successResponse("공지사항이 삭제되었습니다.");
     }
 }

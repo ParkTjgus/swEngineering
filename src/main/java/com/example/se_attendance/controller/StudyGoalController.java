@@ -1,8 +1,10 @@
 package com.example.se_attendance.controller;
 
+import com.example.se_attendance.Admin;
 import com.example.se_attendance.domain.dto.MemberDTO;
 import com.example.se_attendance.domain.dto.StudyGoalDTO;
 import com.example.se_attendance.service.StudyGoalService;
+import com.example.se_attendance.utils.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +29,9 @@ public class StudyGoalController {
 
     //목표시간 설정하기
     @PostMapping("/admin/studygoal")
-    public ResponseEntity<String> setStudyGoal(@RequestBody StudyGoalDTO.SetStudyGoal studyGoalDto){
+    public ResponseEntity<?> setStudyGoal(@RequestBody StudyGoalDTO.SetStudyGoal studyGoalDto){
         studyGoalService.setStudyGoal(studyGoalDto);
-        return new ResponseEntity<>("목표시간이 설정되었습니다.", HttpStatus.OK);
+        return ResponseUtil.successResponse("목표시간이 설정되었습니다.");
     }
 
     // 목표 시간 달성한 멤버 출력하기 (web)

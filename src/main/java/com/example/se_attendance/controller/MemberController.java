@@ -4,6 +4,7 @@ import com.example.se_attendance.domain.dto.MemberDTO;
 import com.example.se_attendance.exeption.AppException;
 import com.example.se_attendance.exeption.ErrorCode;
 import com.example.se_attendance.service.MemberService;
+import com.example.se_attendance.utils.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +22,10 @@ public class MemberController {
 
     // 회원가입 (app)
     @PostMapping("/signup")
-    public ResponseEntity<String> signUp(
+    public ResponseEntity<?> signUp(
                                           @RequestBody MemberDTO.MemberSignUpDto memberSignUpDto) throws Exception {
         memberService.signUp(memberSignUpDto);
-        return new ResponseEntity<>("회원가입에 성공했습니다.", HttpStatus.OK);
+        return ResponseUtil.successResponse("회원가입에 성공했습니다.");
     }
 
     // 로그인 (app)
@@ -45,9 +46,9 @@ public class MemberController {
 
     // 회원 정보 수정 (app)
     @PutMapping("/mypage")
-    public ResponseEntity<String> updateMyInfo(Authentication authentication, @RequestBody MemberDTO.Memberdto user){
+    public ResponseEntity<?> updateMyInfo(Authentication authentication, @RequestBody MemberDTO.Memberdto user){
         memberService.updateMyInfo(authentication.getName(), user);
-        return new ResponseEntity<>("회원 정보가 수정되었습니다.", HttpStatus.OK);
+        return ResponseUtil.successResponse("회원 정보가 수정되었습니다.");
     }
 
 
