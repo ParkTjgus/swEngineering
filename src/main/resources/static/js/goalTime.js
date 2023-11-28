@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function(event) {  
 
     // 서버 URL 및 URI
-    const serverUrl = 'http://43.202.35.94:8080';
+    // const serverUrl = 'http://43.202.35.94:8080';
+    const serverUrl  = 'http://localhost:8080';
+
 
     // 목표시간 설정 함수
     function sendStudyGoal(studyGoal) {
-        const uri = '/studygoal';
+        const uri = '/admin/studygoal';
 
         fetch(serverUrl+ uri, {
             method: 'POST',
@@ -55,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // 멤버요청 함수
     function getMember() {
-        const uri = '/member/info';
+        const uri = '/admin/member/info';
         
         fetch(serverUrl + uri, {
             method: 'GET',
@@ -116,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // 달성멤버 출력 함수
     function getAchieveMem(){
-        const uri = '/record';
+        const uri = '/admin/record';
         
         fetch(serverUrl + uri, {
             method: 'GET',

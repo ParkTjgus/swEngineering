@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // 서버로부터 정보를 가져오는 함수
     function getNoticeDetail(serverUrl) {
-        const uri = `/notice/${noticeId}`;
+        const uri = `/admin/notice/${noticeId}`;
 
         // fetch API를 사용하여 데이터 가져오기
         fetch(serverUrl + uri, {
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // 공지사항삭제함수
     function deleteNotice(serverUrl) {
-        const uri = `/notice/${noticeId}`;
+        const uri = `/admin/notice/${noticeId}`;
 
         // fetch API를 사용하여 데이터 가져오기
         fetch(serverUrl + uri, {

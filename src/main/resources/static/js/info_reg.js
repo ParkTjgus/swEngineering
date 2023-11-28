@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const serverUrl = 'http://43.202.35.94:8080';
+    // const serverUrl = 'http://43.202.35.94:8080';
+    const serverUrl  = 'http://localhost:8080';
+
 
     function postInfo(serverUrl){
-        const uri = `/notice`;
+        const uri = `/admin/notice`;
         const noticeContent = document.querySelector('.noticeContent').value; // 요소 가져오기
 
         fetch(serverUrl + uri, {

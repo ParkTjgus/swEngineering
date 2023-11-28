@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
-    const serverUrl = 'http://43.202.35.94:8080';
+    // const serverUrl = 'http://43.202.35.94:8080';
+    const serverUrl  = 'http://localhost:8080';
+
     
     // 서버로부터 공지사항 목록 동적으로 가져오는 함수
     function getNotice() {
-        const uri = '/notice';
+        const uri = '/admin/notice';
         
         fetch(serverUrl + uri, {
             method: 'GET',

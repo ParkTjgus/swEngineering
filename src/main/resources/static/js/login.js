@@ -1,14 +1,15 @@
-document.getElementById('signin-form').addEventListener('submit', function(event) {
-    // event.preventDefault();
+document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
 
     // 입력필드에서 값 가져오기
     const adminId = document.getElementById('adminId').value;
     const adminPassword = document.getElementById('adminPassword').value;
 
     // 서버 URL 및 URI
-    const serverUrl = 'http://43.202.35.94:8080';
+    // const serverUrl = 'http://43.202.35.94:8080';
+    const serverUrl  = 'http://localhost:8080';
 
-    const uri = '/admin/login';
+    const uri = '/html/login';
 
     function sendPostRequest(url) {
         fetch(url, {
@@ -26,7 +27,7 @@ document.getElementById('signin-form').addEventListener('submit', function(event
         // 네트워크 오류가 발생한 경우
         .then((response) => {
             console.log(response.status);
-            if (!response.ok) { // HTTP 응답의 상태 코드가 성공적인(200-299 범위) 경우 true를 반환
+            if (!response.ok) { 
                 if (response.status === 404) {
                     alert("일치하지 않습니다");
                 }
