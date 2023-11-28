@@ -5,6 +5,7 @@ import com.example.se_attendance.domain.dto.MemberDTO;
 import com.example.se_attendance.exeption.AppException;
 import com.example.se_attendance.exeption.ErrorCode;
 import com.example.se_attendance.service.MemberService;
+import com.example.se_attendance.utils.ResponseUtil;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -44,13 +45,12 @@ public class AdminController {
 
     //admin 로그인 판별
     @GetMapping("/admin/login")
-    public ResponseEntity<Admin> loginAdmin(@RequestBody HashMap<String, String> loginInput) {
+    public ResponseEntity<?> loginAdmin(@RequestBody HashMap<String, String> loginInput) {
 
         if ((Admin.isAdmin(loginInput.get("adminId"), loginInput.get("adminPassword"))))
-            return ResponseEntity.ok().body(new Admin("로그인에 성공하였습니다."));
+            return ResponseUtil.successResponse("로그인에 성공하였습니다.");
         else
-            return new ResponseEntity<>(new Admin("아이디 또는 비밀번호가 일치하지 않습니다."),
-                                        HttpStatus.NOT_FOUND);
+            throw new AppException(ErrorCode.NOT_FOUND, "아이디 또는 비밀번호가 일치하지 않습니다.");
 
     }
 
@@ -76,18 +76,16 @@ public class AdminController {
 
     //회원 정보 수정 (Web)
     @PutMapping("/admin/{memberId}/edit")
-    public ResponseEntity<Admin> updateMemberInfo(@PathVariable String memberId, @ModelAttribute MemberDTO.Memberdto memberDto){
+    public ResponseEntity<?> updateMemberInfo(@PathVariable String memberId, @ModelAttribute MemberDTO.Memberdto memberDto){
         memberService.update(memberDto);
-        String result = "회원 정보 수정에 성공 했습니다.";
-        return ResponseEntity.ok().body(new Admin(result));
+        return ResponseUtil.successResponse("회원 정보 수정에 성공 했습니다.");
     }
 
     //특정 회원 정보 삭제
     @DeleteMapping("/admin/{memberId}/delete")
-    public ResponseEntity<Admin> deleteMember(@PathVariable String memberId){
+    public ResponseEntity<?> deleteMember(@PathVariable String memberId){
         memberService.deleteById(memberId);
-
-        return ResponseEntity.ok().body(new Admin(memberId));
+        return ResponseUtil.successResponse(memberId);
     }
 }
 
