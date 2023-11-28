@@ -151,7 +151,8 @@ button:hover{
     color: var(--DarkWhite);
     margin-right: 4px;
 }
-#btn_register{
+#btn_register,
+#btn_goto_register{
     border-style: solid;
     font-size: 18px;
     font-weight: bold;
@@ -163,7 +164,8 @@ button:hover{
     color: var(--DarkWhite);
     margin-right: 4px;
 }
-#btn_register > a{
+#btn_register > a,
+#btn_goto_register > a{
     color: var(--DarkWhite);
 }
 .btn_select{
@@ -206,7 +208,8 @@ button:hover{
     background-color: var(--Chachoal);
     border-color: var(--Chachoal);
 }
-#btn_register:hover{
+#btn_register:hover,
+#btn_goto_register:hover{
     background-color: var(--SecondBlue);
     border-color: var(--SecondBlue);
 }

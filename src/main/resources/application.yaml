@@ -22,16 +22,15 @@
 #      ddl-auto: update
 
 spring:
-  security:
-    user:
-      name: user
-      password: 1111
-
   datasource:
-    url: jdbc:mariadb://localhost/se_login
-    driver-class-name: org.mariadb.jdbc.Driver
-    username: root
-    password: 1029
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    각자 PC에 만들어놓은 Database이름을 써야 합니다.
+    url: jdbc:mysql://localhost:3306/db_SE?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    #    mysql에 생성한 사용자 계정 정보를 써야 합니다.
+    username: admin
+    password: qlalfqjsgh1!
+  thymeleaf:
+    cache: false
 
   jpa:
     database-platform: org.hibernate.dialect.MariaDB103Dialect

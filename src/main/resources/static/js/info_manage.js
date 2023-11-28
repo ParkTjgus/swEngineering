@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         })
         .then(data=>{
             // 서버 응답 데이터를 처리하여 공지사항 목록에 추가
-            data.forEach((response) => {
+            data.forEach((response,index) => {
                 // 서버 응답 데이터를 반복하며 공지사항 목록 생성 및 화면에 추가하기
 
                 // info_list 요소 선택
@@ -42,14 +42,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 noticeTime.classList.add("noticeTime");
                 noticeTime.textContent = `${response.noticeTime}`;
 
+                // 공지사항별 index추가
+                const noticeId = `${index + 1}`;
+
                 // 조회 버튼 생성
                 const btn_detail = document.createElement("button");
                 btn_detail.classList.add("btn_detail");
-                btn_detail.textContent = "풀이 보기";
+                btn_detail.textContent = "상세정보";
                 btn_detail.addEventListener("click", () => {
                     // 클릭 시 페이지 이동
-                    localStorage.setItem('noticeId', response.id);
-                    window.location.href = serverUrl + 'info_detail';
+                    localStorage.setItem('noticeId', noticeId);
+                    window.location.href = serverUrl + `/html/info_detail`;
+                    
                 });
                 
                 // 만든 요소들을 리스트에 추가하기
@@ -65,11 +69,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
     getNotice();
-
-    // 상세조회 버튼 클릭 시
-    document.getElementsByClassName('btn_detail').addEventListener('click', function() {
-        window.location.href = serverUrl + 'mem_detail';
-    })
 
     // 로그아웃 버튼 클릭 시
     document.getElementById('btn_logout').addEventListener('click', function() {

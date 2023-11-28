@@ -44,7 +44,7 @@ public class AdminController {
 
 
     //admin 로그인 판별
-    @GetMapping("/admin/login")
+    @PostMapping("/admin/login")
     public ResponseEntity<?> loginAdmin(@RequestBody HashMap<String, String> loginInput) {
 
         if ((Admin.isAdmin(loginInput.get("adminId"), loginInput.get("adminPassword"))))
