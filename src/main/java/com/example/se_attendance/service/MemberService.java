@@ -88,19 +88,22 @@ public class MemberService {
         persistance.setMemberBirth(user.getMemberBirth());
     }
 
-    public List<MemberDTO.MemberName> getAllMember(){
-        List<MemberEntity> memberEntityList = memberRepository.findAll();
+    public List<MemberDTO.rankMember> getAllMember(){
+        List<Object[]> result = memberRepository.findMembers();
 
-        //Controller에는 dto로 변환해서 줘야함으로 entity->dto 변환하는 부분
-        List<MemberDTO.MemberName> memberNameList = new ArrayList<>();
-        for (MemberEntity memberEntity : memberEntityList){
-            MemberDTO.MemberName memberdto = MemberDTO.MemberName.builder()
-                    .memberId(memberEntity.getMemberId())
-                    .memberName(memberEntity.getMemberName())
-                    .build();
-            memberNameList.add(memberdto);
+        List<MemberDTO.rankMember> mappedResult = new ArrayList<>();
+        for (Object[] row : result) {
+
+            String memberId = (String) row[0];
+            String memberName = (String) row[1];
+            String memberMajor = (String) row[2];
+            int recordTime = ((Number) row[3]).intValue();
+
+            MemberDTO.rankMember member = new MemberDTO.rankMember(memberId, memberName, memberMajor, recordTime);
+            mappedResult.add(member);
         }
-        return memberNameList;
+
+        return mappedResult;
     }
 
     public MemberDTO.Memberdto findById(String memberId){
