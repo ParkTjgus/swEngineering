@@ -19,6 +19,7 @@ public interface StudyGoalRepository extends JpaRepository<StudyGoalEntity, Long
             "FROM RecordEntity r " +
             "WHERE FUNCTION('MONTH', r.createTime) = FUNCTION('MONTH', CURRENT_DATE) " +
             "GROUP BY r.memberEntity.memberId, r.memberEntity.memberName, r.memberEntity.memberId " +
+            //r.memberEntity.memberId -> r.memberEntity.memberMajor 로 수정??
             "HAVING SUM(r.recordTime) > :targetTime")
     List<Object[]> findMembers(@Param("targetTime") Long targetTime);
 }
