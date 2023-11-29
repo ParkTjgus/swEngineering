@@ -53,13 +53,14 @@ public class AdminController {
     }
 
     //DB에 저장된 회원 정보 전부 가져오기
+    //추가 코드
     @GetMapping("/admin/memInfo")
-    public ResponseEntity<List<MemberDTO.MemberName>> getAllMember(){
-        List<MemberDTO.MemberName> members = memberService.getAllMember();
+    public ResponseEntity<List<MemberDTO.rankMember>> getAllMember(){
+        List<MemberDTO.rankMember> members = memberService.getAllMember();
         if (members==null) {
             throw new AppException(ErrorCode.NOT_FOUND, "저장된 회원 정보가 없습니다.");
         }
-        return ResponseEntity.ok().body(memberService.getAllMember());
+        return ResponseEntity.ok().body(members);
     }
 
     //특정 회원 정보 상세 조회
