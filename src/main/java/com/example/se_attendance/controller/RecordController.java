@@ -35,18 +35,18 @@ public class RecordController {
 
     // 기록 중단
     @PostMapping("/record/stop")
-    public ResponseEntity<Void> stopRecord(@RequestBody RecordDTO.stopRequest dto) {
+    public ResponseEntity<?> stopRecord(@RequestBody RecordDTO.stopRequest dto) {
         recordService.stopRecord(dto);
 
-        return ResponseEntity.ok().build();
+        return ResponseUtil.successResponse("성공");
     }
 
     // 위치 보내기
     @PostMapping("/record/location")
-    public ResponseEntity<Void> sendLocation(@RequestBody RecordDTO.sendLocation dto) {
+    public ResponseEntity<?> sendLocation(@RequestBody RecordDTO.sendLocation dto) {
         recordService.sendLocation(dto);
 
-        return ResponseEntity.ok().build();
+        return ResponseUtil.successResponse("성공");
     }
 
     @GetMapping("/rank/time/{month}")
