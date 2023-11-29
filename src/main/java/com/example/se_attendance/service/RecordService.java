@@ -15,7 +15,6 @@ import com.example.se_attendance.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -208,42 +207,38 @@ public class RecordService {
     }
 
     public List<MemberDTO.rankMember> findTimeTop5(String month){
-        List<RecordEntity> top5RecordEntities = null; //recordRepository.findTimeTop5();
+        PageRequest pageRequest = PageRequest.of(0, 5);
+        List<Object[]> top5Object = recordRepository.findTop5ByRecordTime(pageRequest);
         List<MemberDTO.rankMember> top5Members = new ArrayList<>();
 
-        if(top5RecordEntities.isEmpty()) {
-            throw new AppException(ErrorCode.NOT_FOUND, "저장된 회원 정보가 없습니다.");
-        }
+        for (Object[] row : top5Object) {
 
-        for (RecordEntity recordEntity : top5RecordEntities) {
-            MemberDTO.rankMember top5Member = MemberDTO.rankMember.builder()
-                    .totalRecordTime(recordEntity.getRecordTime())
-                    .memberId(recordEntity.getMemberEntity().getMemberId())
-                    .memberName(recordEntity.getMemberEntity().getMemberName())
-                    .memberMajor(recordEntity.getMemberEntity().getMemberMajor())
-                    .build();
-            top5Members.add(top5Member);
+            String memberId = (String) row[0];
+            String memberName = (String) row[1];
+            String memberMajor = (String) row[2];
+            int recordTime = ((Number) row[3]).intValue();
+
+            MemberDTO.rankMember member = new MemberDTO.rankMember(memberId, memberName, memberMajor, recordTime);
+            top5Members.add(member);
         }
 
         return top5Members;
     }
 
     public List<MemberDTO.rankMember> findDayTop5(String month){
-        List<RecordEntity> top5RecordEntities = null; //recordRepository.findDayTop5();
+        PageRequest pageRequest = PageRequest.of(0, 5);
+        List<Object[]> top5Object = recordRepository.findTop5ByRecordDay(pageRequest);
         List<MemberDTO.rankMember> top5Members = new ArrayList<>();
 
-        if(top5RecordEntities.isEmpty()) {
-            throw new AppException(ErrorCode.NOT_FOUND, "저장된 회원 정보가 없습니다.");
-        }
+        for (Object[] row : top5Object) {
 
-        for (RecordEntity recordEntity : top5RecordEntities) {
-            MemberDTO.rankMember top5Member = MemberDTO.rankMember.builder()
-                    .totalRecordTime(recordEntity.getRecordTime())
-                    .memberId(recordEntity.getMemberEntity().getMemberId())
-                    .memberName(recordEntity.getMemberEntity().getMemberName())
-                    .memberMajor(recordEntity.getMemberEntity().getMemberMajor())
-                    .build();
-            top5Members.add(top5Member);
+            String memberId = (String) row[0];
+            String memberName = (String) row[1];
+            String memberMajor = (String) row[2];
+            int recordTime = ((Number) row[3]).intValue();
+
+            MemberDTO.rankMember member = new MemberDTO.rankMember(memberId, memberName, memberMajor, recordTime);
+            top5Members.add(member);
         }
 
         return top5Members;

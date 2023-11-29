@@ -34,4 +34,6 @@ public class RecordDTO {
         private double userLatitude;
         private double userLongitude;
     }
+
+
 }
