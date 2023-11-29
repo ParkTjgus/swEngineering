@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -47,7 +48,7 @@ public class RecordService {
     }
 
     // 당일 기록 가져오기
-    public RecordDTO.TodayRecordResponse getRecord() {
+    public RecordDTO.RecordTimeResponse getRecord() {
 
         // 토큰에서 학번 가져오기
         String userId = JwtUtil.getUserIdFromToken();
@@ -61,7 +62,7 @@ public class RecordService {
         // DB에 userId가 없을 경우
         int recordTime = recordRepository.findRecordByUserIdToday(userId, startOfDay, endOfDay).orElse(0);
 
-        return RecordDTO.TodayRecordResponse.builder()
+        return RecordDTO.RecordTimeResponse.builder()
                 .recordTime(recordTime)
                 .build();
     }
@@ -132,26 +133,29 @@ public class RecordService {
     }
 
     // 출석한 날짜 받아오기
-    public List<RecordDTO.MyRecord> getMyRecord(String date) {
+    public RecordDTO.RecordTimeResponse getMyRecord(String date) {
         String userId = JwtUtil.getUserIdFromToken();
 
-        List<RecordEntity> recordEntities = recordRepository.findByUserIdDate(userId, date);
+        // 날짜 계산
+        LocalDate today = LocalDate.parse(date);
+        LocalDateTime startOfDay = today.atStartOfDay(); // 오늘 날짜의 00:00:00
+        LocalDateTime endOfDay = today.plusDays(1).atStartOfDay(); // 내일 날짜의 00:00:00
 
-        // userId의 해당 월의 정보 받아오기
-//        List<RecordEntity> recordEntities= recordRepository.findByUserIdMonth(userId, month);
+        // 같은 userId를 가진 RecordEntity 찾기
+        Optional<RecordEntity> recordEntityOptional = recordRepository.findByUserIdToday(userId, startOfDay, endOfDay);
 
-        // 반환 리스트 선언
-        List<RecordDTO.MyRecord> myRecords = new ArrayList<>();
-
-        // recordEntities 리스트를 반복하여 myRecords 리스트 생성
-        for (RecordEntity recordEntity : recordEntities) {
-            RecordDTO.MyRecord myRecord = RecordDTO.MyRecord.builder()
+        if (recordEntityOptional.isPresent()) {
+            RecordEntity recordEntity = recordEntityOptional.get();
+            return RecordDTO.RecordTimeResponse.builder()
                     .recordTime(recordEntity.getRecordTime())
-                    .recordDate(recordEntity.getCreateTime().toLocalDate())  // LocalDateTime을 LocalDate로 변환
                     .build();
-            myRecords.add(myRecord);
+        } else {
+            // recordEntity가 null인 경우의 처리
+            // 예: 빈 MyRecord 객체를 반환하거나, 오류 메시지를 담은 MyRecord 객체를 반환
+            return RecordDTO.RecordTimeResponse.builder()
+                    .recordTime(0)
+                    .build();
         }
-        return myRecords;
     }
 
     public StudyGoalDTO.GetStudyGoal getStudyGoal(String month) {

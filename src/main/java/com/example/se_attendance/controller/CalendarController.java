@@ -26,7 +26,7 @@ public class CalendarController {
     }
 
     @GetMapping("/myrecord")
-    public ResponseEntity<List<RecordDTO.MyRecord>> getMyRecord(@RequestParam String date) {
+    public ResponseEntity<RecordDTO.RecordTimeResponse> getMyRecord(@RequestParam String date) {
         return ResponseEntity.ok().body(recordService.getMyRecord(date));
     }
 

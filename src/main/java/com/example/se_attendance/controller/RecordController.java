@@ -1,6 +1,5 @@
 package com.example.se_attendance.controller;
 
-import com.example.se_attendance.domain.dto.MemberDTO;
 import com.example.se_attendance.domain.dto.RecordDTO;
 import com.example.se_attendance.service.RecordService;
 import com.example.se_attendance.utils.ResponseUtil;
@@ -8,8 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,7 +24,7 @@ public class RecordController {
 
     // 당일 기록 가져오기
     @GetMapping("/record/today")
-    public ResponseEntity<RecordDTO.TodayRecordResponse> getRecord() {
+    public ResponseEntity<RecordDTO.RecordTimeResponse> getRecord() {
 
 
         return ResponseEntity.ok().body(recordService.getRecord());
