@@ -93,6 +93,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 memberId.classList.add("memberId");
                 memberId.textContent = `${response.memberId}`;
 
+                // 출석시간 표시 요소 생성
+                const totalRecordTime = document.createElement("div");
+                totalRecordTime.classList.add("totalRecordTime");
+                totalRecordTime.textContent = `${response.totalRecordTime}`;
+
                 // 조회 버튼 생성
                 const btn_detail = document.createElement("button");
                 btn_detail.classList.add("btn_detail");
@@ -107,6 +112,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 // 만든 요소들을 리스트에 추가하기
                 memberDiv.appendChild(memberName);
                 memberDiv.appendChild(memberId);
+                memberDiv.appendChild(totalRecordTime);
+
                 memberDiv.appendChild(btn_detail);
                 member_list.appendChild(memberDiv);
             })
@@ -136,11 +143,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
             console.log('달성 멤버 출력!');
             console.log('data : ',data);
 
-
             // 서버 응답 데이터를 처리하여 문제 목록에 추가
             data.forEach((response) => {
-                // 서버 응답 데이터를 반복하며 문제 목록 생성 및 화면에 추가하기
 
+                // 서버 응답 데이터를 반복하며 문제 목록 생성 및 화면에 추가하기
                 console.log(response);
                 // member_list 요소 선택
                 const member_list = document.querySelector(".member_list");
@@ -160,9 +166,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 memberId.textContent = `${response.memberId}`;
 
                 // 출석시간 표시 요소 생성
-                const attendTime = document.createElement("div");
-                attendTime.classList.add("attendTime");
-                attendTime.textContent = `${response.attendTime}`;
+                const totalRecordTime = document.createElement("div");
+                totalRecordTime.classList.add("totalRecordTime");
+                totalRecordTime.textContent = `${response.totalRecordTime}`;
 
                 // 조회 버튼 생성
                 const btn_detail = document.createElement("button");
@@ -178,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 // 만든 요소들을 리스트에 추가하기
                 memberDiv.appendChild(memberName);
                 memberDiv.appendChild(memberId);
-                memberDiv.appendChild(attendTime);
+                memberDiv.appendChild(totalRecordTime);
 
                 memberDiv.appendChild(btn_detail);
                 member_list.appendChild(memberDiv);
@@ -196,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     getMember();
 
-    // 체크박스 클릭시 목표달성멤버만 출력
+    // 체크박스 클릭
     document.getElementById('btn_check').addEventListener('change', function() {
         const memberList = document.querySelector(".member_list");
 
@@ -206,10 +212,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         memberList.innerHTML = ''; // 기존의 멤버 목록을 비워줌
         memberList.appendChild(titleDiv); // titleDiv 다시 추가
         if (this.checked) {
-            // 체크박스가 체크된 경우
+            // 체크박스 클릭시 목표달성멤버만 출력
             getAchieveMem();
         } else {
-            // 체크박스가 해제된 경우
+            // 체크박스가 해제시 모든멤버 출력
             getMember();
         }
     });
@@ -221,14 +227,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
 
     // 로그아웃 버튼 클릭 시
-    document.getElementsByClassName('btn_logout').addEventListener('click', function() {
+    document.querySelector('.btn_logout').addEventListener('click', function() {
         // 쿠키 제거
-        // 과거의 날짜로 설정하여 쿠키를 즉시 만료
-        document.cookie = "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         // 로컬 스토리지 클리어
         localStorage.clear();
         alert('로그아웃되었습니다.');
-        window.location.href = serverUrl + 'signin';
+        window.location.href = serverUrl + '/html/login';
     });
 
 });

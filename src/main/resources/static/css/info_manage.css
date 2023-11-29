@@ -17,7 +17,7 @@
 .info_list > .info,
 .info_list > .title{
     height: 48px;
-    width: 800px;
+    width: 900px;
     display: flex;
     align-items: center;
     margin: 0px auto 2px;
@@ -36,7 +36,7 @@
 }
 
 .info > .noticeContent,
-.info > .noticeTime{
+.info > .createTime{
     background-color: var(--White);
     border-style: solid;
     border-color: var(--Gray);
@@ -48,8 +48,8 @@
     flex:5;
     margin-right: 20px;
 }
-.noticeTime{
-    flex:3;
+.createTime{
+    flex:5;
     margin-right: 8px;
 }
 .btn_detail,.non_btn{

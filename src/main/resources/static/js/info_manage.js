@@ -87,6 +87,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         // 로컬 스토리지 클리어
         localStorage.clear();
         alert('로그아웃되었습니다.');
-        window.location.href = serverUrl + 'html/login';
+        window.location.href = serverUrl + '/html/login';
     });
 });

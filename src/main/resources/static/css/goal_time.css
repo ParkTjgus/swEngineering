@@ -32,12 +32,6 @@
     
 }
 
-
-
-
-
-
-
 .main_content > .content{
     display: flex;
     align-items: start;
@@ -73,27 +67,35 @@
     height: 42px;
 }
 
-.member > *{
+.member > .memberName,
+.member > .memberNum,
+.member > .memberId,
+.member > .totalRecordTime{
     border-style: solid;
     border-color: var(--Gray);
     border-width: 1px;
     border-radius: 4px;
     background-color: var(--White);
-
 }
-
 .memberName{
-    flex:1;
+    flex:3;
 }
-.memberNum{
-    flex:2;
+.member > .memberName{
+    margin-right: 8px;
 }
 
+.memberNum,
+.memberId{
+    flex:5;
+}
+.memberId{
+    margin-right: 8px;
+}
 
-.btn_detail,
 .non_btn,
-.attendTime{
-    flex:1;
+.btn_detail,
+.totalRecordTime{
+    flex:3;
 }
 
 .check{

@@ -74,13 +74,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
 
     // 로그아웃 버튼 클릭 시
-    document.getElementsByClassName('btn_logout').addEventListener('click', function() {
+    document.querySelector('.btn_logout').addEventListener('click', function() {
         // 쿠키 제거
-        // 과거의 날짜로 설정하여 쿠키를 즉시 만료
-        document.cookie = "Authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         // 로컬 스토리지 클리어
         localStorage.clear();
         alert('로그아웃되었습니다.');
-        window.location.href = serverUrl + 'signin';
+        window.location.href = serverUrl + '/html/login';
     });
 });
