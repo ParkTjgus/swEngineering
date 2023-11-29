@@ -132,11 +132,13 @@ public class RecordService {
     }
 
     // 출석한 날짜 받아오기
-    public List<RecordDTO.MyRecord> getMyRecord(String month) {
+    public List<RecordDTO.MyRecord> getMyRecord(String date) {
         String userId = JwtUtil.getUserIdFromToken();
 
+        List<RecordEntity> recordEntities = recordRepository.findByUserIdDate(userId, date);
+
         // userId의 해당 월의 정보 받아오기
-        List<RecordEntity> recordEntities= recordRepository.findByUserIdMonth(userId, month);
+//        List<RecordEntity> recordEntities= recordRepository.findByUserIdMonth(userId, month);
 
         // 반환 리스트 선언
         List<RecordDTO.MyRecord> myRecords = new ArrayList<>();

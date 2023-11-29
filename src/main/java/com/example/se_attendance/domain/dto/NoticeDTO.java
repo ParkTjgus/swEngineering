@@ -12,8 +12,6 @@ public class NoticeDTO {
     @Builder
     public static class GetNotice {
         private String noticeContent;
-        private LocalDateTime createTime;
-        private LocalDateTime updateTime;
     }
 
     @Getter

@@ -36,8 +36,6 @@ public class NoticeService {
 
         return  NoticeDTO.GetNotice.builder()
                 .noticeContent(noticeEntity.getNoticeContent())
-                .createTime(noticeEntity.getCreateTime())
-                .updateTime(noticeEntity.getUpdateTime())
                 .build();
     }
 
