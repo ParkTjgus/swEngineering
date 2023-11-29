@@ -178,7 +178,7 @@ public class RecordService {
     }
 
     public List<MemberDTO.rankMember> findTimeTop5(String month){
-        List<RecordEntity> top5RecordEntities = recordRepository.findTimeTop5();
+        List<RecordEntity> top5RecordEntities = null; //recordRepository.findTimeTop5();
         List<MemberDTO.rankMember> top5Members = new ArrayList<>();
 
         if(top5RecordEntities.isEmpty()) {
@@ -199,7 +199,7 @@ public class RecordService {
     }
 
     public List<MemberDTO.rankMember> findDayTop5(String month){
-        List<RecordEntity> top5RecordEntities = recordRepository.findDayTop5();
+        List<RecordEntity> top5RecordEntities = null; //recordRepository.findDayTop5();
         List<MemberDTO.rankMember> top5Members = new ArrayList<>();
 
         if(top5RecordEntities.isEmpty()) {

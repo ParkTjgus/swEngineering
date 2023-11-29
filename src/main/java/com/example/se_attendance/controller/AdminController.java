@@ -41,8 +41,6 @@ public class AdminController {
         return "mem_detail";
     }
 
-
-
     //admin 로그인 판별
     @PostMapping("/admin/login")
     public ResponseEntity<?> loginAdmin(@RequestBody HashMap<String, String> loginInput) {

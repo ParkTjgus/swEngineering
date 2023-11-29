@@ -2,9 +2,12 @@ package com.example.se_attendance.service;
 
 import com.example.se_attendance.domain.dto.MemberDTO;
 import com.example.se_attendance.domain.entity.MemberEntity;
+import com.example.se_attendance.domain.entity.NoticeEntity;
+import com.example.se_attendance.domain.entity.RecordEntity;
 import com.example.se_attendance.exeption.AppException;
 import com.example.se_attendance.exeption.ErrorCode;
 import com.example.se_attendance.repository.MemberRepository;
+import com.example.se_attendance.repository.RecordRepository;
 import com.example.se_attendance.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,16 +18,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional(readOnly = false)
 @Slf4j
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final RecordRepository recordRepository;
     private final BCryptPasswordEncoder encoder;
     @Value("${jwt.secret}")
     private String secretKey;
@@ -116,6 +121,17 @@ public class MemberService {
     }
 
     public void deleteById(String memberId) {
+        System.out.println("-------------------------------------------------------------");
+        MemberEntity member = memberRepository.findByMemberId(memberId)
+                .orElseThrow(() -> new AppException(ErrorCode.NOT_FOUND, "해당 학생이 존재하지 않습니다."));
+        System.out.println("MemberEntity: "+member.getMemberId());
+        List<RecordEntity> memberRecord = recordRepository.findByMemberEntity(member);
+        if (memberRecord != null) {
+            for (RecordEntity record : memberRecord) {
+                System.out.println("DELETE Record : "+record.getId());
+                recordRepository.delete(record);
+            }
+        }
         memberRepository.deleteByMemberId(memberId);
     }
 
