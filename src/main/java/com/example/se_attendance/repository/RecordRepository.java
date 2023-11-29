@@ -28,6 +28,9 @@ public interface RecordRepository extends JpaRepository<RecordEntity, Long> {
     @Query("SELECT e FROM RecordEntity e WHERE e.memberEntity.memberId = :userId AND MONTH(e.createTime) = CAST(:month AS integer)")
     List<RecordEntity> findByUserIdMonth(String userId, String month);
 
+    @Query("SELECT e FROM RecordEntity e WHERE e.memberEntity.memberId = :userId AND DATE(e.createTime) = :date")
+    List<RecordEntity> findByUserIdDate(String userId, String date);
+
     List<RecordEntity> findByMemberEntity(MemberEntity member);
 
 //    //기록시간순으로 top5 정렬하여 가져온다.
