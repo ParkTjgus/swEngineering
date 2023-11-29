@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // const serverUrl = 'http://43.202.35.94:8080';
-    const serverUrl  = 'http://localhost:8080';
+    const serverUrl = 'http://43.202.35.94:8080';
+    // const serverUrl  = 'http://localhost:8080';
 
     function getInfo(serverUrl){
         const uri = `/html/info_reg`;

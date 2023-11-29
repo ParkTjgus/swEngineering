@@ -6,8 +6,8 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     const adminPassword = document.getElementById('adminPassword').value;
 
     // 서버 URL 및 URI
-    // const serverUrl = 'http://43.202.35.94:8080';
-    const serverUrl  = 'http://localhost:8080';
+    const serverUrl = 'http://43.202.35.94:8080';
+    // const serverUrl  = 'http://localhost:8080';
 
     const uri = '/admin/login';
 

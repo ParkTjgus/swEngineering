@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(event) {  
 
     // 서버 URL 및 URI
-    // const serverUrl = 'http://43.202.35.94:8080';
-    const serverUrl  = 'http://localhost:8080';
+    const serverUrl = 'http://43.202.35.94:8080';
+    // const serverUrl  = 'http://localhost:8080';
 
 
     // 목표시간 설정 함수
