@@ -13,6 +13,7 @@ import com.example.se_attendance.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -95,7 +96,7 @@ public class RecordService {
             existingRecord.setRecordTime(dto.getRecordTime());
             recordRepository.save(existingRecord);
         } else {
-            throw  new AppException(ErrorCode.INVALID_INPUT, "해당 사용자는 없습니다.");
+//            RecordEntity recordEntity = Recor
         }
     }
 
@@ -141,21 +142,12 @@ public class RecordService {
         LocalDateTime startOfDay = today.atStartOfDay(); // 오늘 날짜의 00:00:00
         LocalDateTime endOfDay = today.plusDays(1).atStartOfDay(); // 내일 날짜의 00:00:00
 
-        // 같은 userId를 가진 RecordEntity 찾기
-        Optional<RecordEntity> recordEntityOptional = recordRepository.findByUserIdToday(userId, startOfDay, endOfDay);
+        // 같은 userId를 가진 RecordTime 찾기
+        int recordTime = recordRepository.findRecordByUserIdToday(userId, startOfDay, endOfDay).orElse(0);
 
-        if (recordEntityOptional.isPresent()) {
-            RecordEntity recordEntity = recordEntityOptional.get();
-            return RecordDTO.RecordTimeResponse.builder()
-                    .recordTime(recordEntity.getRecordTime())
-                    .build();
-        } else {
-            // recordEntity가 null인 경우의 처리
-            // 예: 빈 MyRecord 객체를 반환하거나, 오류 메시지를 담은 MyRecord 객체를 반환
-            return RecordDTO.RecordTimeResponse.builder()
-                    .recordTime(0)
-                    .build();
-        }
+        return RecordDTO.RecordTimeResponse.builder()
+                .recordTime(recordTime)
+                .build();
     }
 
     public StudyGoalDTO.GetStudyGoal getStudyGoal(String month) {
