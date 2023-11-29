@@ -3,10 +3,12 @@ package com.example.se_attendance.service;
 import com.example.se_attendance.domain.dto.MemberDTO;
 import com.example.se_attendance.domain.dto.RecordDTO;
 import com.example.se_attendance.domain.dto.StudyGoalDTO;
+import com.example.se_attendance.domain.entity.MemberEntity;
 import com.example.se_attendance.domain.entity.RecordEntity;
 import com.example.se_attendance.domain.entity.StudyGoalEntity;
 import com.example.se_attendance.exeption.AppException;
 import com.example.se_attendance.exeption.ErrorCode;
+import com.example.se_attendance.repository.MemberRepository;
 import com.example.se_attendance.repository.RecordRepository;
 import com.example.se_attendance.repository.StudyGoalRepository;
 import com.example.se_attendance.utils.JwtUtil;
@@ -15,6 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -29,8 +32,10 @@ public class RecordService {
 
     private final RecordRepository recordRepository;
     private final StudyGoalRepository studyGoalRepository;
+    private final MemberRepository memberRepository;
 
     // 기록하기
+    @Transactional
     public void record(RecordDTO.RecordRequest dto) {
 
         double latitude = dto.getUserLatitude();
@@ -42,10 +47,39 @@ public class RecordService {
         if(latitude > 10 && longitude > 10) {
             throw new AppException(ErrorCode.INVALID_INPUT, "동아리방에서 출석해 주세요");
         }
-//        RecordEntity recordEntity = RecordEntity.builder()
-//                .memberEntity(JwtUtil.getUserIdFromToken())
-//                .build();
-//        recordRepository.save(recordEntity);
+
+        // userId 가져오기
+        String userId = JwtUtil.getUserIdFromToken();
+
+        // 오늘 날짜 계산
+        LocalDate today = LocalDate.now();
+        LocalDateTime startOfDay = today.atStartOfDay(); // 오늘 날짜의 00:00:00
+        LocalDateTime endOfDay = today.plusDays(1).atStartOfDay(); // 내일 날짜의 00:00:00
+
+        // 같은 userId를 가진 RecordEntity 찾기
+        RecordEntity existingRecord = recordRepository.findByUserIdToday(userId, startOfDay, endOfDay)
+                .orElse(null);
+
+//        if (existingRecord == null) {
+//            RecordEntity recordEntity = RecordEntity.builder()
+//                    .memberEntity(memberRepository.findByMemberId(userId).get())
+//                    .recordTime(0)
+//                    .build();
+//            recordRepository.save(recordEntity);
+//        }
+        if (existingRecord == null) {
+            Optional<MemberEntity> memberEntityOptional = memberRepository.findByMemberId(userId);
+            if (memberEntityOptional.isPresent()) {
+                RecordEntity recordEntity = RecordEntity.builder()
+                        .memberEntity(memberEntityOptional.get())
+                        .recordTime(0)
+                        .build();
+                recordRepository.save(recordEntity);
+            } else {
+                // 멤버가 존재하지 않는 경우의 처리
+                throw new AppException(ErrorCode.NOT_FOUND, "Member not found");
+            }
+        }
     }
 
     // 당일 기록 가져오기
@@ -96,7 +130,7 @@ public class RecordService {
             existingRecord.setRecordTime(dto.getRecordTime());
             recordRepository.save(existingRecord);
         } else {
-//            RecordEntity recordEntity = Recor
+            throw new AppException(ErrorCode.INVALID_INPUT, "오류 발생");
         }
     }
 
