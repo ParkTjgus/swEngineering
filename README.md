@@ -3,7 +3,7 @@ LAAW (Location-Based Attendance Application and Web)
 
 ## Project description
 영남대학교 로봇공학과 동아리 `PowerSupply`의 동아리 부원 관리 및 부원들의 학업 증진을 목적으로 하는 동아리 출석부 앱&웹 프로젝트
-- **We**b을 통해 동아리 간부들이 동아리원들의 출석 및 공부 현황 관리
+- **Web**을 통해 동아리 간부들이 동아리원들의 출석 및 공부 현황 관리
 - **App**을 통해 동아리원들이 출석 및 공부 시간 기록  
 
 ## How to Use
