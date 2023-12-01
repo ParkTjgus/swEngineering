@@ -1,14 +1,3 @@
-## Team members
-
-|이름|역할|
-|:------:|:--------------:|
-|박서현|팀장, Back-end|
-|곽준현|서버 관리, Back-end|
-|박현정|Back-end|
-|최성임|Web Front-end|
-|김가빈|Application Developer|
-|최서연|Application Developer|
-
 ## Project Name
 LAAW (Location-Based Attendance Application and Web) 
 
@@ -36,13 +25,12 @@ LAAW (Location-Based Attendance Application and Web)
 
 ## Team Members
 
-|이름||학번||역할|
-|:------:||:------:||:--------:|
-|박서현||22112100||팀장, Back-end|
-|곽준현||21912398||서버 관리, Back-end|
-|박현정||22112020||Back-end|
-|최성임||21910867||Web Front-end|
-|김가빈||22112032||Application Developer|
-|최서연||22112038||Application Developer|
-
+|이름|학번|역할|
+|:------:|:------:|:------------------:|
+|박서현|22112100|팀장, Back-end|
+|곽준현|21912398|서버 관리, Back-end|
+|박현정|22112020|Back-end|
+|최성임|21910867|Web Front-end|
+|김가빈|22112032|Application Developer|
+|최서연|22112038|Application Developer|
 
