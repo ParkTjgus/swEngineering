@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <EditText
+        android:id="@+id/et_major"
+        android:layout_width="260dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="학과"
+        android:inputType="text"
+        android:textColor="#999999"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+    <EditText
+        android:id="@+id/et_birth"
+        android:layout_width="260dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="생년월일(6자리)"
+        android:inputType="text"
+        android:textColor="#999999"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_major" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="260dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="이름"
+        android:inputType="text"
+        android:textColor="#999999"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="260dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="비밀번호"
+        android:inputType="text"
+        android:textColor="#999999"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_studentId" />
+
+    <EditText
+        android:id="@+id/et_studentId"
+        android:layout_width="260dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="176dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="학번"
+        android:textColor="#999999"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="0dp"
+        android:layout_height="53dp"
+        android:background="@drawable/button_yellow"
+        android:text="확인"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/sp_state"
+        app:layout_constraintStart_toEndOf="@+id/btn_cancel"
+        app:layout_constraintTop_toBottomOf="@+id/sp_state"
+        app:layout_constraintVertical_bias="0.185" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="0dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/button_gray"
+        android:text="취소"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_register"
+        app:layout_constraintStart_toStartOf="@+id/tv_state"
+        app:layout_constraintTop_toBottomOf="@+id/sp_state"
+        app:layout_constraintVertical_bias="0.185" />
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="139dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="100dp"
+        android:text="회원가입"
+        android:textColor="#058EE2"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/sp_state"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:entries="@array/state"
+        app:layout_constraintEnd_toEndOf="@+id/et_birth"
+        app:layout_constraintStart_toEndOf="@+id/tv_state"
+        app:layout_constraintTop_toBottomOf="@+id/et_birth" />
+
+    <TextView
+        android:id="@+id/tv_state"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:text="상태"
+        android:textAlignment="center"
+        android:textColor="#636363"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/sp_state"
+        app:layout_constraintStart_toStartOf="@+id/et_birth"
+        app:layout_constraintTop_toTopOf="@+id/sp_state" />
+</androidx.constraintlayout.widget.ConstraintLayout>

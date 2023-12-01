@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EditActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#FFCA28">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="정보 수정"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <EditText
+            android:id="@+id/et_edit_password"
+            android:layout_width="230dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="90dp"
+            android:ems="10"
+            android:hint="비밀번호"
+            android:inputType="text"
+            android:textColor="#999999"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tv_edit_password"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_edit_name"
+            android:layout_width="230dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="이름"
+            android:inputType="text"
+            android:textColor="#999999"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/et_edit_password"
+            app:layout_constraintStart_toStartOf="@+id/et_edit_password"
+            app:layout_constraintTop_toBottomOf="@+id/et_edit_password" />
+
+        <EditText
+            android:id="@+id/et_edit_major"
+            android:layout_width="230dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="학과"
+            android:inputType="text"
+            android:textColor="#999999"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/et_edit_name"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@+id/et_edit_name"
+            app:layout_constraintTop_toBottomOf="@+id/et_edit_name" />
+
+        <EditText
+            android:id="@+id/et_edit_birth"
+            android:layout_width="230dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="생년월일"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/et_edit_major"
+            app:layout_constraintStart_toStartOf="@+id/et_edit_major"
+            app:layout_constraintTop_toBottomOf="@+id/et_edit_major" />
+
+        <Spinner
+            android:id="@+id/sp_edit_state"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:entries="@array/state"
+            app:layout_constraintEnd_toEndOf="@+id/et_edit_birth"
+            app:layout_constraintStart_toStartOf="@+id/et_edit_birth"
+            app:layout_constraintTop_toBottomOf="@+id/et_edit_birth" />
+
+        <TextView
+            android:id="@+id/tv_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상태"
+            android:textAlignment="center"
+            android:textColor="#737373"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/sp_edit_state"
+            app:layout_constraintEnd_toStartOf="@+id/sp_edit_state"
+            app:layout_constraintStart_toStartOf="@+id/tv_edit_birth"
+            app:layout_constraintTop_toTopOf="@+id/sp_edit_state" />
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_yellow"
+            android:text="확인"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/sp_edit_state"
+            app:layout_constraintStart_toEndOf="@+id/btn_no"
+            app:layout_constraintTop_toBottomOf="@+id/sp_edit_state" />
+
+        <Button
+            android:id="@+id/btn_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_gray"
+            android:text="취소"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/btn_ok"
+            app:layout_constraintStart_toStartOf="@+id/tv_edit_password"
+            app:layout_constraintTop_toBottomOf="@+id/sp_edit_state" />
+
+        <TextView
+            android:id="@+id/tv_edit_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="10dp"
+            android:text="비밀번호"
+            android:textColor="#737373"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/et_edit_password"
+            app:layout_constraintEnd_toStartOf="@+id/et_edit_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/et_edit_password" />
+
+        <TextView
+            android:id="@+id/tv_edit_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:textColor="#737373"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/et_edit_name"
+            app:layout_constraintEnd_toStartOf="@+id/et_edit_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_edit_password"
+            app:layout_constraintTop_toTopOf="@+id/et_edit_name" />
+
+        <TextView
+            android:id="@+id/tv_edit_major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="학과"
+            android:textColor="#737373"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/et_edit_major"
+            app:layout_constraintEnd_toStartOf="@+id/et_edit_major"
+            app:layout_constraintStart_toStartOf="@+id/tv_edit_password"
+            app:layout_constraintTop_toTopOf="@+id/et_edit_major" />
+
+        <TextView
+            android:id="@+id/tv_edit_birth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="생년월일"
+            android:textColor="#737373"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/et_edit_birth"
+            app:layout_constraintStart_toStartOf="@+id/tv_edit_password"
+            app:layout_constraintTop_toTopOf="@+id/et_edit_birth" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
