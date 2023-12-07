@@ -76,9 +76,9 @@ public class RecordDTO {
 
         //setter
         public void setRecordTime(int recordTime) { this.recordTime = recordTime; }
-        public void setUserLatitude(Double userLatitude) { this.memberLatitude = userLatitude; }
+        public void setMemberLatitude(Double userLatitude) { this.memberLatitude = userLatitude; }
 
-        public void setUserLongitude(Double userLongitude) { this.memberLongitude = userLongitude; }
+        public void setMemberLongitude(Double userLongitude) { this.memberLongitude = userLongitude; }
 
         //getter
         public int getRecordTime() { return recordTime; }

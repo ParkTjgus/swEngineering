@@ -15,6 +15,7 @@ public class RankActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rank);
         clickDayRank();
         clickTimeRank();
+        clickBack();
     }
 
     //날짜별 랭킹 화면으로 이동
@@ -38,6 +39,16 @@ public class RankActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RankActivity.this, TimeActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+    void clickBack() {
+        Button btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RankActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

@@ -9,6 +9,8 @@ import com.example.se_app.dto.RankDTO;
 import com.example.se_app.dto.RecordDTO;
 import com.example.se_app.dto.RegisterDTO;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -16,7 +18,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Body;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
-
 public interface Service {
 
     //로그인
@@ -50,11 +51,11 @@ public interface Service {
 
     //랭킹 보기(출석 일수)
     @GET("/rank/day/{month}")
-    Call<RankDTO.RankResponse> dayrank();
+    Call<List<RankDTO.RankResponse>> dayrank();
 
     //랭킹 보기(출석 시간)
     @GET("/rank/time/{month}")
-    Call<RankDTO.RankResponse> timerank();
+    Call<List<RankDTO.RankResponse>> timerank();
 
 
     //jwt 사용

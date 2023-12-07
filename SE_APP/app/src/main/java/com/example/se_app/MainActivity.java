@@ -113,15 +113,14 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<RecordDTO.StartRecord>() {
             @Override
             public void onResponse(Call<RecordDTO.StartRecord> record, Response<RecordDTO.StartRecord> response) {
-                if (response.isSuccessful() && response.body() != null) {
+                if (response.isSuccessful()) {
                     // 응답 성공(200)
-                    // body 없음
+                    String message = response.body().getMessage();
+                    Toast.makeText(getApplicationContext(), message,Toast.LENGTH_SHORT).show();
                 } else {
-                    // 응답 실패(401)
-                    if (response.body() != null) {
-                        String message = response.body().getMessage().toString();
-                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    }
+                    // 응답 실패(403)
+                    String message = response.body().getMessage();
+                    Toast.makeText(getApplicationContext(), message,Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -146,15 +145,14 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<RecordDTO.StopRecord>() {
             @Override
             public void onResponse(Call<RecordDTO.StopRecord> record, Response<RecordDTO.StopRecord> response) {
-                if (response.isSuccessful() && response.body() != null) {
+                if (response.isSuccessful()) {
                     // 응답 성공(200)
-                    // body 없음
+                    String message = response.body().getMessage();
+                    Toast.makeText(getApplicationContext(), message,Toast.LENGTH_SHORT).show();
                 } else {
-                    // 응답 실패(401)
-                    if (response.body() != null) {
-                        String message = response.body().getMessage().toString();
-                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    }
+                    // 응답 실패(403)
+                    String message = response.body().getMessage();
+                    Toast.makeText(getApplicationContext(), message,Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -179,15 +177,14 @@ public class MainActivity extends AppCompatActivity {
             //서버 통신 성공
             @Override
             public void onResponse(Call<RecordDTO.Location> call, Response<RecordDTO.Location> response) {
-                if (response.isSuccessful() && response.body() != null) {
+                if (response.isSuccessful()) {
                     // 응답 성공(200)
-                    // body 없음
+                    String message = response.body().getMessage();
+                    Toast.makeText(getApplicationContext(), message,Toast.LENGTH_SHORT).show();
                 } else {
-                    // 응답 실패(401)
-                    if (response.body() != null) {
-                        String message = response.body().getMessage().toString();
-                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                    }
+                    // 응답 실패(403)
+                    String message = response.body().getMessage();
+                    Toast.makeText(getApplicationContext(), message,Toast.LENGTH_SHORT).show();
                 }
             }
             //서버 통신 실패
@@ -241,8 +238,8 @@ public class MainActivity extends AppCompatActivity {
                     btn_start.setVisibility(View.VISIBLE);
                     Location();
                     stopRecord();
-                    //record가 없으면 setText("")
-                    //tv_time.setText("");
+                    //record가 없ㅂㅂㅂ으면 setText("")
+                    tv_time.setText("");
                     timeThread.interrupt();
                 }
             }
@@ -285,7 +282,6 @@ public class MainActivity extends AppCompatActivity {
             int min = (msg.arg1 / 100) / 60;
             int hour = (msg.arg1 / 100) / 360;
             recordTime = msg.arg1;
-            //1000이 1초 1000*60 은 1분 1000*60*10은 10분 1000*60*60은 한시간
 
             @SuppressLint("DefaultLocale") String result = String.format("%02d:%02d:%02d", hour, min, sec);
             tv_time.setText(result);
@@ -294,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
     public class timeThread implements Runnable {
         @Override
         public void run() {
-            //if 위치내에 있으면
+            getTodayRecord();
             int i = recordTime;
             while (!Thread.currentThread().isInterrupted()) {
                 Message msg = new Message();

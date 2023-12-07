@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,7 +10,6 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,7 +23,7 @@
                 android:layout_margin="1dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_calendar_yellow"
-                android:text="일수"
+                android:text="날짜별"
                 android:textColor="#fff"
                 android:textStyle="bold" />
 
@@ -33,13 +34,11 @@
                 android:layout_margin="1dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_calendar_blue"
-                android:text="시간"
+                android:text="시간별"
                 android:textColor="#fff"
                 android:textStyle="bold" />
 
-
         </LinearLayout>
-
 
         <TextView
             android:id="@+id/tv_msg"
@@ -50,8 +49,18 @@
             android:layout_weight="1"
             android:text="랭킹화면입니다." />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.widget.Button
+                android:id="@+id/btn_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/back_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
-
 
 </RelativeLayout>

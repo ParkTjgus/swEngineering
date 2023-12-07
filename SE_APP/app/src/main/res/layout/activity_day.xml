@@ -22,7 +22,7 @@
                 android:layout_margin="1dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_calendar_yellow"
-                android:text="일수"/>
+                android:text="날짜별"/>
 
             <android.widget.Button
                 android:id="@+id/btn_time"
@@ -33,21 +33,19 @@
                 android:textColor="#fff"
                 android:layout_weight="1"
                 android:background="@drawable/button_calendar_blue"
-                android:text="시간"/>
-
-
+                android:text="시간별"/>
 
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="550dp"
+            android:layout_gravity="center">
 
             <ListView
                 android:id="@+id/list"
                 android:layout_width="match_parent"
-                android:layout_height="650dp"
-                android:layout_marginBottom="16dp"
+                android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -55,12 +53,19 @@
 
             </ListView>
 
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.widget.Button
+                android:id="@+id/btn_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/back_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </FrameLayout>
-
-
 
 </RelativeLayout>
