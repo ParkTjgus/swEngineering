@@ -15,7 +15,7 @@ LAAW (Location-Based Attendance Application and Web)
    - 공지사항 등록 시, App에 관리자가 등록한 공지사항이 출력됨
 ### APP
 **해당 application은 android에서만 실행 가능**
-1. <https://github.com/ParkTjgus/swEngineering/tree/main/SE_APP/apk> 또는 <https://drive.google.com/file/d/1pq1aoxfxMZRMnRsBWqrY_XIJ_cD-Vq9F/view?usp=sharing>에 접속하여 출석앱.apk 파일을 휴대폰에 다운로드
+1. <https://github.com/ParkTjgus/swEngineering/tree/main/SE_APP/apk> 또는 <https://drive.google.com/file/d/1fttQbAYdZJqytv6WII3XIwV6JmPiITBV/view?usp=sharing>에 접속하여 출석앱.apk 파일을 휴대폰에 다운로드
    - 플레이스토어에서 다운로드 하는 것이 아니기 때문에 신뢰할 수 있는 출처에서만 파일을 다운로드 하라는 안내 문구가 출력됨. 무시하고 다운로드.
    - 만약 보안을 위해 알 수 없는 출처... 와 같은 안내 문구가 뜨면서 설치가 되지 않는다면 **설정->어플리케이션->특별한 접근->출처를 알 수 없는 앱 설치**에서 설치하는 경로의 앱을 **허용** 상태로 만든 후 다시 다운로드
 2. 출석앱.apk 파일 다운로드가 완료되면 설치를 진행
