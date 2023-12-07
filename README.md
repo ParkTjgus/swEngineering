@@ -22,7 +22,7 @@ LAAW (Location-Based Attendance Application and Web)
    - **내 파일**에 들어가 출석앱.apk 파일을 클릭하여 설치.
    - 안전하지 않은 앱 차단됨이라는 팝업이 뜬다면 아래의 세부정보 더보기를 클릭하여 무시하고 설치하기 클릭.
 3. 앱이 설치되었다는 문구가 뜨면 앱을 실행
-4. 회원가입하여 접속하거나 테스트 회원인 아이디: 21234567 비밀번호: 0000으로 접속 
+4. 회원가입하여 접속하거나 테스트 회원인 **아이디**: 21234567 **비밀번호**: 0000으로 접속 
 
 ## Code Link
 - Back-end: <https://github.com/ParkTjgus/swEngineering/tree/main/SEattendance/src/main/java/com/example/se_attendance>
